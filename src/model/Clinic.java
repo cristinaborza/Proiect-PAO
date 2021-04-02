@@ -20,6 +20,7 @@ public class Clinic {
         patients = new TreeSet();
         appointments = new ArrayList<>();
     }
+
     public Clinic(String location, TreeSet<Stuff> stuff, TreeSet<Patient> patients, List<Appointment> appointments) {
         this.location = location;
         this.stuff = stuff;
