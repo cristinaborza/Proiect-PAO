@@ -33,7 +33,7 @@ public class ClinicService {
         clinic.setPatients(patients);
     }
 
-    public void printPatient() {
+    public void printPatients() {
         TreeSet<Patient> patients = clinic.getPatients();
         for(Patient temp : patients) {
             System.out.println(temp);

@@ -1,10 +1,14 @@
 package model;
 
+import java.util.Scanner;
+
 public abstract class Person implements Comparable<Person>{
     private String firstName, lastName;
     private int age;
     private String email, phone;
     private boolean sex;
+
+    public Person() { }
 
     public Person(String firstName, String lastName, int age, String email, String phone, boolean sex) {
         this.firstName = firstName;
@@ -75,5 +79,33 @@ public abstract class Person implements Comparable<Person>{
         return  "Nume: " + lastName + '\n' +
                 "Prenume: " + firstName + '\n' +
                 "Varsta: " + age + '\n';
+    }
+
+    public void read(Scanner scanner) {
+        System.out.println("Introduceti numele:");
+        String lastName = scanner.nextLine();
+
+        System.out.println("Introduceti prenumele:");
+        String firstName = scanner.nextLine();
+
+        System.out.println("Introduceti varsta:");
+        int age = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Introduceti adresa de e-mail:");
+        String email = scanner.nextLine();
+
+        System.out.println("Introduceti numarul de telefon:");
+        String phone = scanner.nextLine();
+
+        System.out.println("Introduceti sexul: (F/B)");
+        String aux = scanner.nextLine();
+        boolean sex = aux.equals("F");
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.phone = phone;
+        this.sex = sex;
     }
 }
