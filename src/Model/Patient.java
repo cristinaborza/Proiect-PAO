@@ -1,18 +1,20 @@
 package Model;
 
-public class Patient extends Person{
-    private String[] diseases;
+import java.util.List;
 
-    public Patient(String firstName, String lastName, int age, String email, String phone, boolean sex, String[] diseases) {
+public class Patient extends Person{
+    private List<String> diseases;
+
+    public Patient(String firstName, String lastName, int age, String email, String phone, boolean sex, List<String> diseases) {
         super(firstName, lastName, age, email, phone, sex);
         this.diseases = diseases;
     }
 
-    public String[] getDiseases() {
+    public List<String> getDiseases() {
         return diseases;
     }
 
-    public void setDiseases(String[] diseases) {
+    public void setDiseases(List<String> diseases) {
         this.diseases = diseases;
     }
 }

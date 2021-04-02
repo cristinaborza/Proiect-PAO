@@ -1,7 +1,7 @@
 package Model;
 
 public class Stuff extends Person{
-    protected int salary, experience;
+    private int salary, experience;
 
     public Stuff(String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience) {
         super(firstName, lastName, age, email, phone, sex);

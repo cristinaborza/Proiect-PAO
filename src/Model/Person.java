@@ -1,10 +1,10 @@
 package Model;
 
 public abstract class Person implements Comparable<Person>{
-    protected String firstName, lastName;
-    protected int age;
-    protected String email, phone;
-    protected boolean sex;
+    private String firstName, lastName;
+    private int age;
+    private String email, phone;
+    private boolean sex;
 
     @Override
     public int compareTo(Person o) {

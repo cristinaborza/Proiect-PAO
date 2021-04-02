@@ -1,15 +1,16 @@
 package Model;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
+import java.util.List;
 
 public class Drug {
     private String name;
     private double price;
-    private Vector<String> ingredients;
+    private List<String> ingredients;
 
-    public Drug(String name, double price, Vector<String> ingredients) {
+    public Drug(String name, double price, List<String> ingredients) {
         this.name = name;
         this.price = price;
         this.ingredients = ingredients;
@@ -31,11 +32,11 @@ public class Drug {
         this.price = price;
     }
 
-    public Vector<String> getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Vector<String> ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 }
