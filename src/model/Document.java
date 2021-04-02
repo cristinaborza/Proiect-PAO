@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-public class Document {
+public abstract class Document {
     private String date;
     private Doctor doctor;
     private Patient patient;

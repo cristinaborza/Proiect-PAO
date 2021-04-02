@@ -1,14 +1,26 @@
-package Model;
+package model;
 
+import com.sun.jdi.event.ClassUnloadEvent;
+
+import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Clinic {
     private String location;
-    private List<Stuff> stuff;
-    private List<Patient> patients;
+    private TreeSet<Stuff> stuff;
+    private TreeSet<Patient> patients;
     private List<Appointment> appointments;
 
-    public Clinic(String location, List<Stuff> stuff, List<Patient> patients, List<Appointment> appointments) {
+    public Clinic() {
+        location = "";
+        stuff = new TreeSet();
+        patients = new TreeSet();
+        appointments = new ArrayList<>();
+    }
+    public Clinic(String location, TreeSet<Stuff> stuff, TreeSet<Patient> patients, List<Appointment> appointments) {
         this.location = location;
         this.stuff = stuff;
         this.patients = patients;
@@ -23,19 +35,19 @@ public class Clinic {
         this.location = location;
     }
 
-    public List<Stuff> getStuff() {
+    public TreeSet<Stuff> getStuff() {
         return stuff;
     }
 
-    public void setStuff(List<Stuff> stuff) {
+    public void setStuff(TreeSet<Stuff> stuff) {
         this.stuff = stuff;
     }
 
-    public List<Patient> getPatients() {
+    public TreeSet<Patient> getPatients() {
         return patients;
     }
 
-    public void setPatients(List<Patient> patients) {
+    public void setPatients(TreeSet<Patient> patients) {
         this.patients = patients;
     }
 

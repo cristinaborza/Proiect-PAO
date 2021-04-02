@@ -1,7 +1,5 @@
-package Model;
+package model;
 
-import java.lang.reflect.Array;
-import java.time.temporal.JulianFields;
 import java.util.List;
 
 public class Surgery extends Appointment{

@@ -1,6 +1,6 @@
-package Model;
+package model;
 
-public class Stuff extends Person{
+public abstract class Stuff extends Person{
     private int salary, experience;
 
     public Stuff(String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience) {
@@ -23,5 +23,12 @@ public class Stuff extends Person{
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "salariu: " + salary + '\n' +
+                "experienta: " + experience + "ani\n";
     }
 }

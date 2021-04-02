@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Referral extends Document{
     private Doctor doctorRef;

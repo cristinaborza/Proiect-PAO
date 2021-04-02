@@ -1,6 +1,5 @@
-package Model;
+package model;
 
-import java.io.LineNumberInputStream;
 import java.util.List;
 
 public class Examination extends Appointment{

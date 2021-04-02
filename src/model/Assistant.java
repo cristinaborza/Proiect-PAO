@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Assistant extends Stuff{
     private boolean haveSuperiorStudies;
@@ -14,5 +14,12 @@ public class Assistant extends Stuff{
 
     public void setHaveSuperiorStudies(boolean haveSuperiorStudies) {
         this.haveSuperiorStudies = haveSuperiorStudies;
+    }
+
+    @Override
+    public String toString() {
+        if (this.haveSuperiorStudies == true)
+            return super.toString() + "\n" + "Asistent cu studii superioare";
+        return super.toString() + "\n" + "Asistent fara studii superioare";
     }
 }

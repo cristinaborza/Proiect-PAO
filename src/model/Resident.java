@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Resident extends Stuff{
     private int expectedGraduation;

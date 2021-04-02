@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Doctor extends Stuff{
     private String specialization;
@@ -14,5 +14,11 @@ public class Doctor extends Stuff{
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "specializare: " + specialization + '\n';
     }
 }

@@ -1,17 +1,10 @@
-package Model;
+package model;
 
 public abstract class Person implements Comparable<Person>{
     private String firstName, lastName;
     private int age;
     private String email, phone;
     private boolean sex;
-
-    @Override
-    public int compareTo(Person o) {
-        if(this.lastName.compareTo(o.getLastName()) != 0)
-            return this.lastName.compareTo(o.getLastName());
-        return this.firstName.compareTo(o.getFirstName());
-    }
 
     public Person(String firstName, String lastName, int age, String email, String phone, boolean sex) {
         this.firstName = firstName;
@@ -68,5 +61,19 @@ public abstract class Person implements Comparable<Person>{
 
     public void setSex(boolean sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        if(this.lastName.compareTo(o.getLastName()) != 0)
+            return this.lastName.compareTo(o.getLastName());
+        return this.firstName.compareTo(o.getFirstName());
+    }
+
+    @Override
+    public String toString() {
+        return  "Nume: " + lastName + '\n' +
+                "Prenume: " + firstName + '\n' +
+                "Varsta: " + age + '\n';
     }
 }
