@@ -24,6 +24,24 @@ public class ClinicService {
         }
     }
 
+    public Stuff searchStuff(String cnp) {
+        TreeSet<Stuff> stuff = clinic.getStuff();
+        for(Stuff currentStuff : stuff) {
+            if(cnp.equals(currentStuff.getCnp())) {
+                return currentStuff;
+            }
+        }
+
+        return new Doctor();
+    }
+
+    public void deleteStuff(String cnp) {
+        Stuff stuffMember = searchStuff(cnp);
+        TreeSet<Stuff> stuff = clinic.getStuff();
+        stuff.remove(stuffMember);
+        clinic.setStuff(stuff);
+    }
+
     public Doctor searchDoctor(String cnp) {
         TreeSet<Stuff> stuff = clinic.getStuff();
         for(Stuff currentStuff : stuff) {
@@ -135,6 +153,13 @@ public class ClinicService {
         return new Patient();
     }
 
+    public void deletePatient(String cnp) {
+        Patient patient = searchPatient(cnp);
+        TreeSet<Patient> patients = clinic.getPatients();
+        patients.remove(patient);
+        clinic.setPatients(patients);
+    }
+
     public void updatePatient(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex) {
         TreeSet<Patient> patients = clinic.getPatients();
         Patient patient = searchPatient(cnp);
@@ -151,9 +176,27 @@ public class ClinicService {
         clinic.setPatients(patients);
     }
 
+    public void deleteAppointment(int id) {
+        List<Appointment> appointments = clinic.getAppointments();
+        for(Appointment appointment : appointments) {
+            if(appointment.getId() == id) {
+                appointments.remove(appointment);
+                clinic.setAppointments(appointments);
+                return;
+            }
+        }
+    }
+
     public void addAppointment(Appointment appointment) {
         List<Appointment> appointments = clinic.getAppointments();
         appointments.add(appointment);
         clinic.setAppointments(appointments);
+    }
+
+    public void printAppointments() {
+        List<Appointment> appointments = clinic.getAppointments();
+        for(Appointment appointment : appointments) {
+            System.out.println(appointment);
+        }
     }
 }

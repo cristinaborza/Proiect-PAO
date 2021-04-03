@@ -6,8 +6,11 @@ public class Surgery extends Appointment{
     private int time;
     private List<Assistant> assistants;
 
-    public Surgery(String date, Patient patient, Doctor doctor, int price, int time, List<Assistant> assistants) {
-        super(date, patient, doctor, price);
+    public  Surgery() {
+        super();
+    }
+    public Surgery(String date, int id, Patient patient, Doctor doctor, int price, int time, List<Assistant> assistants) {
+        super(id, date, patient, doctor, price);
         this.time = time;
         this.assistants = assistants;
     }
