@@ -8,6 +8,7 @@ public abstract class Stuff extends Person{
     public Stuff() {
         super();
     }
+
     public Stuff(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience) {
         super(cnp, firstName, lastName, age, email, phone, sex);
         this.salary = salary;

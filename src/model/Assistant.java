@@ -9,8 +9,8 @@ public class Assistant extends Stuff{
         super();
     }
 
-    public Assistant(String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, boolean haveSuperiorStudies) {
-        super(firstName, lastName, age, email, phone, sex, salary, experience);
+    public Assistant(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, boolean haveSuperiorStudies) {
+        super(cnp, firstName, lastName, age, email, phone, sex, salary, experience);
         this.haveSuperiorStudies = haveSuperiorStudies;
     }
 

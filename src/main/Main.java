@@ -38,7 +38,9 @@ public class Main {
                     resident.read(scanner);
                     clinicService.addStuff(resident);
                 }
-            } else if(option == 2) {
+            }
+
+            else if(option == 2) {
                 System.out.println("Introduceti cnp-ul persoanei careia vreti sa ii modificati datele:");
                 String cnp = scanner.nextLine();
 
@@ -61,18 +63,74 @@ public class Main {
                 String aux = scanner.nextLine();
                 boolean sex = aux.equals("F");
 
-                // clinicService.updatePatient(cnp, lastName, firstName, age, email, phone, sex);
-            } else if(option == 3) {
+                System.out.println("Introduceti noul salariu");
+                int salary = Integer.parseInt(scanner.nextLine());
+
+                System.out.println("Introduceti tipul de angajat (1 - medic, 2 - asistent, 3 - rezident)");
+                int type = Integer.parseInt(scanner.nextLine());
+
+                if(type == 1) {
+                    System.out.println("Introduceti noua specializare");
+                    String specialization = scanner.nextLine();
+                    clinicService.updateDoctor(cnp, lastName, firstName, age, email, phone, sex, salary, specialization);
+                } else if(type == 2) {
+                    System.out.println("Introduceti daca are sau nu studii superioare (T/F)");
+                    boolean hs = scanner.nextLine().equals("T");
+                    clinicService.updateAssistant(cnp, lastName, firstName, age, email, phone, sex, salary, hs);
+                } else {
+                    System.out.println("Introduceti numarul de ani pana la finalizarea studiilor");
+                    int date = Integer.parseInt(scanner.nextLine());
+                    clinicService.updateResident(cnp, lastName, firstName, age, email, phone, sex, salary, date);
+                }
+            }
+
+            else if(option == 3) {
                 clinicService.printStuff();
-            } else if(option == 4) {
+            }
+
+            else if(option == 4) {
                 Patient patient = new Patient();
                 patient.read(scanner);
                 clinicService.addPatient(patient);
-            } else if(option == 6) {
-                clinicService.printPatients();
+            }
 
-            } else if(option == 7)
+            else if(option == 5) {
+                System.out.println("Introduceti cnp-ul persoanei careia vreti sa ii modificati datele:");
+                String cnp = scanner.nextLine();
+
+                System.out.println("Introduceti noul nume: ");
+                String lastName = scanner.nextLine();
+
+                System.out.println("Introduceti noul prenume: ");
+                String firstName = scanner.nextLine();
+
+                System.out.println("Introduceti noua varsta:");
+                int age = Integer.parseInt(scanner.nextLine());
+
+                System.out.println("Introduceti noua adresa de e-mail:");
+                String email = scanner.nextLine();
+
+                System.out.println("Introduceti noul numar de telefon:");
+                String phone = scanner.nextLine();
+
+                System.out.println("Introduceti noul sex: (F/B)");
+                String aux = scanner.nextLine();
+                boolean sex = aux.equals("F");
+
+                clinicService.updatePatient(cnp, firstName, lastName, age, email, phone, sex);
+            }
+
+            else if(option == 6) {
+                clinicService.printPatients();
+            }
+
+            else if(option == 7) {
                 break;
+            }
+
+            else {
+                System.out.println("Optiunea introdusa este invalida");
+            }
         }
     }
 }
