@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Scanner;
-
 public abstract class Appointment {
     private int id;
     private String date;
@@ -56,5 +54,15 @@ public abstract class Appointment {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return  "Data: '" + date + '\n' +
+                "Nume pacient: " + patient.getLastName() + '\n' +
+                "Prenume pacient: " + patient.getFirstName() + '\n' +
+                "Nume doctor" + doctor.getLastName() + '\n' +
+                "Prenume doctor: " + doctor.getFirstName() + '\n'+
+                "Pret: " + price + '\n';
     }
 }

@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.List;
 
 public class Drug {
@@ -8,7 +7,6 @@ public class Drug {
     private int price;
     private List<String> ingredients;
 
-    public Drug() { }
     public Drug(String name, int price, List<String> ingredients) {
         this.name = name;
         this.price = price;
@@ -37,5 +35,10 @@ public class Drug {
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    @Override
+    public String toString() {
+        return name + '\n';
     }
 }

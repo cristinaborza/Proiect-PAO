@@ -1,10 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Surgery extends Appointment{
     private int time;
-    private List<Assistant> assistants;
+    private List<Assistant> assistants = new ArrayList<>();
 
     public  Surgery() {
         super();
@@ -29,5 +30,12 @@ public class Surgery extends Appointment{
 
     public void setAssistants(List<Assistant> assistants) {
         this.assistants = assistants;
+    }
+
+    @Override
+    public String toString() {
+        return "Tip programare: Operatie" +
+                super.toString() +
+                "Timp operatie: " + time + '\n';
     }
 }

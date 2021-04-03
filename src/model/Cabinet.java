@@ -1,18 +1,19 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Clinic {
+public class Cabinet {
     private String location;
-    private TreeSet<Stuff> stuff;
-    private TreeSet<Patient> patients;
-    private List<Appointment> appointments;
-    private TreeMap<String, List<Document>> patientDocuments;
+    private TreeSet<Stuff> stuff = new TreeSet<>();
+    private TreeSet<Patient> patients = new TreeSet<>();
+    private List<Appointment> appointments = new ArrayList<>();
+    private TreeMap<String, List<Document>> patientDocuments = new TreeMap<>();
 
-    public Clinic() { }
-    public Clinic(String location, TreeSet<Stuff> stuff, TreeSet<Patient> patients, List<Appointment> appointments, TreeMap<String, List<Document>> patientDocuments) {
+    public Cabinet() { }
+    public Cabinet(String location, TreeSet<Stuff> stuff, TreeSet<Patient> patients, List<Appointment> appointments, TreeMap<String, List<Document>> patientDocuments) {
         this.location = location;
         this.stuff = stuff;
         this.patients = patients;

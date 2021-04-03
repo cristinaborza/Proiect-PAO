@@ -30,10 +30,7 @@ public class Doctor extends Stuff{
     @Override
     public void read(Scanner scanner) {
         super.read(scanner);
-
         System.out.println("Introduceti specializarea:");
-        String specialization = scanner.nextLine();
-
-        this.specialization = specialization;
+        this.specialization = scanner.nextLine();
     }
 }

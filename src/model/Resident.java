@@ -24,10 +24,7 @@ public class Resident extends Stuff{
     @Override
     public void read(Scanner scanner) {
         super.read(scanner);
-
         System.out.println("Introduceti numarul de ani pana la absolvire:");
-        int expectedGraduation = Integer.parseInt(scanner.nextLine());
-
-        this.expectedGraduation = expectedGraduation;
+        this.expectedGraduation = Integer.parseInt(scanner.nextLine());
     }
 }

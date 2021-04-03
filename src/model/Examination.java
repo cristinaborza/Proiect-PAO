@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 public class Examination extends Appointment{
     private String verdict;
 
@@ -19,5 +17,12 @@ public class Examination extends Appointment{
 
     public void setVerdict(String verdict) {
         this.verdict = verdict;
+    }
+
+    @Override
+    public String toString() {
+        return "Tip programare: Examinare \n" +
+                super.toString() +
+                "Rezultat: " + verdict + '\n';
     }
 }

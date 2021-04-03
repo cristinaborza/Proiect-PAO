@@ -46,9 +46,7 @@ public abstract class Stuff extends Person{
         int salary = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Introduceti numarul de ani de experinta:");
-        int experience = Integer.parseInt(scanner.nextLine());
-
-        this.experience = experience;
+        this.experience = Integer.parseInt(scanner.nextLine());
         this.salary = salary;
     }
 }

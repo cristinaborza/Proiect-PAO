@@ -5,11 +5,11 @@ public abstract class Document {
     private Doctor doctor;
     private Patient patient;
 
-    public Document() { };
+    public Document() { }
     public Document(String date, Doctor doctor, Patient patient) {
         this.date = date;
         this.doctor = doctor;
-
+        this.patient = patient;
     }
 
     public String getDate() {

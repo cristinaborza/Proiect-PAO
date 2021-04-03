@@ -3,9 +3,6 @@ package model;
 public class Referral extends Document{
     private Doctor doctorRef;
 
-    public Referral() {
-        super();
-    }
     public Referral(String date, Doctor doctor, Patient patient, Doctor doctorRef) {
         super(date, doctor, patient);
         this.doctorRef = doctorRef;

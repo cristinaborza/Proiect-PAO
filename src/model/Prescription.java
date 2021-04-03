@@ -5,9 +5,6 @@ import java.util.List;
 public class Prescription extends Document{
     private List<Drug> drugs;
 
-    public Prescription() {
-        super();
-    }
     public Prescription(String date, Doctor doctor, Patient patient, List<Drug> drugs) {
         super(date, doctor, patient);
         this.drugs = drugs;

@@ -1,10 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Patient extends Person{
-    private List<String> diseases;
+    private List<String> diseases = new ArrayList<>();
 
     public  Patient() {
         super();

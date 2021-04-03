@@ -8,14 +8,9 @@ public class Assistant extends Stuff{
     public Assistant() {
         super();
     }
-
     public Assistant(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, boolean haveSuperiorStudies) {
         super(cnp, firstName, lastName, age, email, phone, sex, salary, experience);
         this.haveSuperiorStudies = haveSuperiorStudies;
-    }
-
-    public boolean isHaveSuperiorStudies() {
-        return haveSuperiorStudies;
     }
 
     public void setHaveSuperiorStudies(boolean haveSuperiorStudies) {
@@ -24,7 +19,7 @@ public class Assistant extends Stuff{
 
     @Override
     public String toString() {
-        if (this.haveSuperiorStudies == true)
+        if (this.haveSuperiorStudies)
             return super.toString() + "\n" + "Asistent cu studii superioare";
         return super.toString() + "\n" + "Asistent fara studii superioare";
     }
@@ -35,8 +30,6 @@ public class Assistant extends Stuff{
 
         System.out.println("Introduceti daca asistentul are sau nu studii superioare (T/F):");
         String temp = scanner.nextLine();
-        boolean haveSuperiorStudies = temp.equals("T");
-
-        this.haveSuperiorStudies = haveSuperiorStudies;
+        this.haveSuperiorStudies = temp.equals("T");
     }
 }

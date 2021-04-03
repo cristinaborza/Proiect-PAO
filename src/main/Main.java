@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Clinic clinic = new Clinic();
-        ClinicService clinicService = new ClinicService(clinic);
+        Cabinet cabinet = new Cabinet();
+        CabinetService cabinetService = new CabinetService(cabinet);
         Scanner scanner = new Scanner(System.in);
 
         while(true) {
@@ -37,15 +37,15 @@ public class Main {
                 if(type == 1) {
                     Doctor doctor = new Doctor();
                     doctor.read(scanner);
-                    clinicService.addStuff(doctor);
+                    cabinetService.addStuff(doctor);
                 } else if(type == 2) {
                     Assistant assistant = new Assistant();
                     assistant.read(scanner);
-                    clinicService.addStuff(assistant);
+                    cabinetService.addStuff(assistant);
                 } else {
                     Resident resident = new Resident();
                     resident.read(scanner);
-                    clinicService.addStuff(resident);
+                    cabinetService.addStuff(resident);
                 }
             }
 
@@ -81,15 +81,15 @@ public class Main {
                 if(type == 1) {
                     System.out.println("Introduceti noua specializare");
                     String specialization = scanner.nextLine();
-                    clinicService.updateDoctor(cnp, lastName, firstName, age, email, phone, sex, salary, specialization);
+                    cabinetService.updateDoctor(cnp, lastName, firstName, age, email, phone, sex, salary, specialization);
                 } else if(type == 2) {
                     System.out.println("Introduceti daca are sau nu studii superioare (T/F)");
                     boolean hs = scanner.nextLine().equals("T");
-                    clinicService.updateAssistant(cnp, lastName, firstName, age, email, phone, sex, salary, hs);
+                    cabinetService.updateAssistant(cnp, lastName, firstName, age, email, phone, sex, salary, hs);
                 } else {
                     System.out.println("Introduceti numarul de ani pana la finalizarea studiilor");
                     int date = Integer.parseInt(scanner.nextLine());
-                    clinicService.updateResident(cnp, lastName, firstName, age, email, phone, sex, salary, date);
+                    cabinetService.updateResident(cnp, lastName, firstName, age, email, phone, sex, salary, date);
                 }
             }
 
@@ -97,17 +97,17 @@ public class Main {
                 System.out.println("Introduceti cnp-ul angajatului pe care vreti sa il stergeti:");
                 String cnp = scanner.nextLine();
 
-                clinicService.deleteStuff(cnp);
+                cabinetService.deleteStuff(cnp);
             }
 
             else if(option == 4) {
-                clinicService.printStuff();
+                cabinetService.printStuff();
             }
 
             else if(option == 5) {
                 Patient patient = new Patient();
                 patient.read(scanner);
-                clinicService.addPatient(patient);
+                cabinetService.addPatient(patient);
             }
 
             else if(option == 6) {
@@ -133,18 +133,18 @@ public class Main {
                 String aux = scanner.nextLine();
                 boolean sex = aux.equals("F");
 
-                clinicService.updatePatient(cnp, firstName, lastName, age, email, phone, sex);
+                cabinetService.updatePatient(cnp, firstName, lastName, age, email, phone, sex);
             }
 
             else if(option == 7) {
                 System.out.println("Introduceti cnp-ul pacientului pe care vreti sa il stergeti:");
                 String cnp = scanner.nextLine();
 
-                clinicService.deletePatient(cnp);
+                cabinetService.deletePatient(cnp);
             }
 
             else if(option == 8) {
-                clinicService.printPatients();
+                cabinetService.printPatients();
             }
 
             else if(option == 9) {
@@ -166,8 +166,8 @@ public class Main {
                 if(type == 1) {
                     Surgery surgery = new Surgery();
                     surgery.setDate(date);
-                    surgery.setPatient(clinicService.searchPatient(cnpPatient));
-                    surgery.setDoctor(clinicService.searchDoctor(cnpDoctor));
+                    surgery.setPatient(cabinetService.searchPatient(cnpPatient));
+                    surgery.setDoctor(cabinetService.searchDoctor(cnpDoctor));
                     surgery.setPrice(price);
 
                     System.out.println("Introduceti numarul necesar de ore: ");
@@ -180,38 +180,38 @@ public class Main {
                     for(int i = 1; i <= n; ++i) {
                         System.out.println("Introduceti cnp-ul asistenului: ");
                         String cnpAssistant = scanner.nextLine();
-                        Assistant assistant = clinicService.searchAssistant(cnpAssistant);
+                        Assistant assistant = cabinetService.searchAssistant(cnpAssistant);
                         assistants.add(assistant);
                     }
 
                     surgery.setTime(time);
                     surgery.setAssistants(assistants);
-                    clinicService.addAppointment(surgery);
+                    cabinetService.addAppointment(surgery);
                 }
 
                 else if(type == 2) {
                     Examination examination = new Examination();
                     examination.setDate(date);
-                    examination.setPatient(clinicService.searchPatient(cnpPatient));
-                    examination.setDoctor(clinicService.searchDoctor(cnpDoctor));
+                    examination.setPatient(cabinetService.searchPatient(cnpPatient));
+                    examination.setDoctor(cabinetService.searchDoctor(cnpDoctor));
                     examination.setPrice(price);
 
                     System.out.println("Introduceti rezultatul examinarii: ");
                     String verdict = scanner.nextLine();
 
                     examination.setVerdict(verdict);
-                    clinicService.addAppointment(examination);
+                    cabinetService.addAppointment(examination);
                 }
             }
 
             else if(option == 10) {
                 System.out.println("Introduceti id-ul programarii pe care vreti sa o anulati");
                 int id = Integer.parseInt(scanner.nextLine());
-                clinicService.deleteAppointment(id);
+                cabinetService.deleteAppointment(id);
             }
 
             else if(option == 11) {
-                clinicService.printAppointments();
+                cabinetService.printAppointments();
             }
 
             else if(option == 12) {
@@ -230,7 +230,7 @@ public class Main {
                 if(type == 1) {
                     System.out.println("Introduceti numarul de medicamente din reteta: ");
                     int n = Integer.parseInt(scanner.nextLine());
-                    List<Drug> drugs = new ArrayList<Drug>();
+                    List<Drug> drugs = new ArrayList<>();
                     for(int i = 1; i <= n; ++i) {
                         System.out.println("Indroduceti numele medicamentului: ");
                         String medName = scanner.nextLine();
@@ -238,7 +238,7 @@ public class Main {
                         System.out.println("Introduceti pretul: ");
                         int price = Integer.parseInt(scanner.nextLine());
 
-                        List<String> ingredients = new ArrayList<String>();
+                        List<String> ingredients = new ArrayList<>();
                         System.out.println("Introduceti numarul de ingrediente si apoi ingredientele: ");
                         int m = Integer.parseInt(scanner.nextLine());
                         for(int j = 1; j <= m; ++j) {
@@ -250,23 +250,23 @@ public class Main {
                         drugs.add(drug);
                     }
 
-                    Prescription prescription = new Prescription(date, clinicService.searchDoctor(cnpDoctor), clinicService.searchPatient(cnpPatient), drugs);
-                    clinicService.addDocument(prescription);
+                    Prescription prescription = new Prescription(date, cabinetService.searchDoctor(cnpDoctor), cabinetService.searchPatient(cnpPatient), drugs);
+                    cabinetService.addDocument(prescription);
                 }
 
                 else {
                     System.out.println("Introduceti cnp-ul doctorului la care e trimiterea: ");
                     String cnpDoctorRef = scanner.nextLine();
 
-                    Referral referral = new Referral(date, clinicService.searchDoctor(cnpDoctor), clinicService.searchPatient(cnpPatient), clinicService.searchDoctor(cnpDoctorRef));
-                    clinicService.addDocument(referral);
+                    Referral referral = new Referral(date, cabinetService.searchDoctor(cnpDoctor), cabinetService.searchPatient(cnpPatient), cabinetService.searchDoctor(cnpDoctorRef));
+                    cabinetService.addDocument(referral);
                 }
             }
 
             else if(option == 13) {
                 System.out.println("Introduceti cnp-ul persoanei despre care vreti sa aflati informatiile");
                 String cnp = scanner.nextLine();
-                clinicService.printDocuments(cnp);
+                cabinetService.printDrugs(cnp);
             }
 
             else if(option == 14) {
