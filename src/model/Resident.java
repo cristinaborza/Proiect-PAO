@@ -8,8 +8,8 @@ public class Resident extends Stuff{
     public Resident() {
         super();
     }
-    public Resident(String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, int expectedGraduation) {
-        super(firstName, lastName, age, email, phone, sex, salary, experience);
+    public Resident(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, int expectedGraduation) {
+        super(cnp, firstName, lastName, age, email, phone, sex, salary, experience);
         this.expectedGraduation = expectedGraduation;
     }
 

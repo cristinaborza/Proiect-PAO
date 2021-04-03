@@ -2,10 +2,7 @@ package service;
 
 import model.*;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ClinicService {
     private Clinic clinic;
@@ -44,5 +41,25 @@ public class ClinicService {
         List<Appointment> appointments = clinic.getAppointments();
         appointments.add(appointment);
         clinic.setAppointments(appointments);
+    }
+
+    public Patient searchPatient(String cnp) {
+        TreeSet<Patient> patients = clinic.getPatients();
+        Iterator<Patient> it = patients.iterator();
+        while(it.hasNext()) {
+            Patient currentPatient = it.next();
+            if(cnp.equals(currentPatient.getCnp())) {
+                return currentPatient;
+            }
+        }
+
+        return new Patient();
+    }
+
+    public void updatePatient(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex) {
+        Patient patient = searchPatient(cnp);
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setAge(age);
     }
 }

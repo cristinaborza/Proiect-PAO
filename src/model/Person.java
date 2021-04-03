@@ -3,20 +3,29 @@ package model;
 import java.util.Scanner;
 
 public abstract class Person implements Comparable<Person>{
+    private String cnp;
     private String firstName, lastName;
     private int age;
     private String email, phone;
     private boolean sex;
 
     public Person() { }
-
-    public Person(String firstName, String lastName, int age, String email, String phone, boolean sex) {
+    public Person(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex) {
+        this.cnp = cnp;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.phone = phone;
         this.sex = sex;
+    }
+
+    public String getCnp() {
+        return cnp;
+    }
+
+    public void setCnp(String cnp) {
+        this.cnp = cnp;
     }
 
     public String getFirstName() {
@@ -78,10 +87,14 @@ public abstract class Person implements Comparable<Person>{
     public String toString() {
         return  "Nume: " + lastName + '\n' +
                 "Prenume: " + firstName + '\n' +
-                "Varsta: " + age + '\n';
+                "Varsta: " + age + '\n' +
+                "CNP: " + cnp + '\n';
     }
 
     public void read(Scanner scanner) {
+        System.out.println("Introduceti cnp-ul:");
+        String cnp = scanner.nextLine();
+
         System.out.println("Introduceti numele:");
         String lastName = scanner.nextLine();
 
@@ -101,6 +114,7 @@ public abstract class Person implements Comparable<Person>{
         String aux = scanner.nextLine();
         boolean sex = aux.equals("F");
 
+        this.cnp = cnp;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;

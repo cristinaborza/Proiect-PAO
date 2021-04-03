@@ -10,8 +10,8 @@ public class Patient extends Person{
         super();
     }
 
-    public Patient(String firstName, String lastName, int age, String email, String phone, boolean sex, List<String> diseases) {
-        super(firstName, lastName, age, email, phone, sex);
+    public Patient(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, List<String> diseases) {
+        super(cnp, firstName, lastName, age, email, phone, sex);
         this.diseases = diseases;
     }
 

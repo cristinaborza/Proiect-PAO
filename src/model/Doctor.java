@@ -8,8 +8,8 @@ public class Doctor extends Stuff{
     public Doctor() {
         super();
     }
-    public Doctor(String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, String specialization) {
-        super(firstName, lastName, age, email, phone, sex, salary, experience);
+    public Doctor(String  cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, String specialization) {
+        super(cnp, firstName, lastName, age, email, phone, sex, salary, experience);
         this.specialization = specialization;
     }
 

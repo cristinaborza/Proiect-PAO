@@ -14,10 +14,12 @@ public class Main {
         while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");
             System.out.println("1. Adaugati un angajat (medic, asistent sau rezident)");
-            System.out.println("2. Afisati toti angajatii in ordine alfabetica");
-            System.out.println("3. Adaugati un pacient");
-            System.out.println("4. Afisati toti pacientii in ordine alfabetica");
-            System.out.println("5. Iesire");
+            System.out.println("2. Actualizati datele unui angajat");
+            System.out.println("3. Afisati toti angajatii in ordine alfabetica");
+            System.out.println("4. Adaugati un pacient");
+            System.out.println("5. Actualizati datele unui pacient");
+            System.out.println("6. Afisati toti pacientii in ordine alfabetica");
+            System.out.println("7. Iesire");
 
             int option = Integer.parseInt(scanner.nextLine());
             if (option == 1) {
@@ -37,15 +39,39 @@ public class Main {
                     clinicService.addStuff(resident);
                 }
             } else if(option == 2) {
-                clinicService.printStuff();
+                System.out.println("Introduceti cnp-ul persoanei careia vreti sa ii modificati datele:");
+                String cnp = scanner.nextLine();
+
+                System.out.println("Introduceti noul nume: ");
+                String lastName = scanner.nextLine();
+
+                System.out.println("Introduceti noul prenume: ");
+                String firstName = scanner.nextLine();
+
+                System.out.println("Introduceti noua varsta:");
+                int age = Integer.parseInt(scanner.nextLine());
+
+                System.out.println("Introduceti noua adresa de e-mail:");
+                String email = scanner.nextLine();
+
+                System.out.println("Introduceti noul numar de telefon:");
+                String phone = scanner.nextLine();
+
+                System.out.println("Introduceti noul sex: (F/B)");
+                String aux = scanner.nextLine();
+                boolean sex = aux.equals("F");
+
+                // clinicService.updatePatient(cnp, lastName, firstName, age, email, phone, sex);
             } else if(option == 3) {
+                clinicService.printStuff();
+            } else if(option == 4) {
                 Patient patient = new Patient();
                 patient.read(scanner);
                 clinicService.addPatient(patient);
-            } else if(option == 4) {
+            } else if(option == 6) {
                 clinicService.printPatients();
 
-            } else if(option == 5)
+            } else if(option == 7)
                 break;
         }
     }
