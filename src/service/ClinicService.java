@@ -2,6 +2,7 @@ package service;
 
 import model.*;
 
+import javax.print.Doc;
 import java.util.*;
 
 public class ClinicService {
@@ -197,6 +198,23 @@ public class ClinicService {
         List<Appointment> appointments = clinic.getAppointments();
         for(Appointment appointment : appointments) {
             System.out.println(appointment);
+        }
+    }
+
+    public void addDocument(Document document) {
+        Patient patient = document.getPatient();
+        TreeMap<String, List<Document>> patientDocuments = clinic.getPatientDocuments();
+        List<Document> documents = patientDocuments.get(patient.getCnp());
+        documents.add(document);
+        patientDocuments.put(patient.getCnp(), documents);
+        clinic.setPatientDocuments(patientDocuments);
+    }
+
+    public void printDocuments(String cnp) {
+        TreeMap<String, List<Document>> documents = clinic.getPatientDocuments();
+        List<Document> myDoc = documents.get(cnp);
+        for(Document document : myDoc) {
+            System.out.println(document);
         }
     }
 }

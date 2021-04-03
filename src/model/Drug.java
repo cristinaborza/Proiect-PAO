@@ -5,10 +5,11 @@ import java.util.List;
 
 public class Drug {
     private String name;
-    private double price;
+    private int price;
     private List<String> ingredients;
 
-    public Drug(String name, double price, List<String> ingredients) {
+    public Drug() { }
+    public Drug(String name, int price, List<String> ingredients) {
         this.name = name;
         this.price = price;
         this.ingredients = ingredients;
@@ -22,11 +23,11 @@ public class Drug {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

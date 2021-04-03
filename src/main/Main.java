@@ -3,7 +3,6 @@ package main;
 import model.*;
 import service.*;
 
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -213,6 +212,61 @@ public class Main {
 
             else if(option == 11) {
                 clinicService.printAppointments();
+            }
+
+            else if(option == 12) {
+                System.out.println("Introduceti cnp-ul pacientului: ");
+                String cnpPatient = scanner.nextLine();
+
+                System.out.println("Introduceti cnp-ul doctorului care a emis documentul: ");
+                String cnpDoctor = scanner.nextLine();
+
+                System.out.println("Introduceti data la care a fost emis: ");
+                String date = scanner.nextLine();
+
+                System.out.println("Introduceti tipul de document(1 - Reteta, 2 - Trimitere): ");
+                int type = Integer.parseInt(scanner.nextLine());
+
+                if(type == 1) {
+                    System.out.println("Introduceti numarul de medicamente din reteta: ");
+                    int n = Integer.parseInt(scanner.nextLine());
+                    List<Drug> drugs = new ArrayList<Drug>();
+                    for(int i = 1; i <= n; ++i) {
+                        System.out.println("Indroduceti numele medicamentului: ");
+                        String medName = scanner.nextLine();
+
+                        System.out.println("Introduceti pretul: ");
+                        int price = Integer.parseInt(scanner.nextLine());
+
+                        List<String> ingredients = new ArrayList<String>();
+                        System.out.println("Introduceti numarul de ingrediente si apoi ingredientele: ");
+                        int m = Integer.parseInt(scanner.nextLine());
+                        for(int j = 1; j <= m; ++j) {
+                            String ingredient = scanner.nextLine();
+                            ingredients.add(ingredient);
+                        }
+
+                        Drug drug = new Drug(medName, price, ingredients);
+                        drugs.add(drug);
+                    }
+
+                    Prescription prescription = new Prescription(date, clinicService.searchDoctor(cnpDoctor), clinicService.searchPatient(cnpPatient), drugs);
+                    clinicService.addDocument(prescription);
+                }
+
+                else {
+                    System.out.println("Introduceti cnp-ul doctorului la care e trimiterea: ");
+                    String cnpDoctorRef = scanner.nextLine();
+
+                    Referral referral = new Referral(date, clinicService.searchDoctor(cnpDoctor), clinicService.searchPatient(cnpPatient), clinicService.searchDoctor(cnpDoctorRef));
+                    clinicService.addDocument(referral);
+                }
+            }
+
+            else if(option == 13) {
+                System.out.println("Introduceti cnp-ul persoanei despre care vreti sa aflati informatiile");
+                String cnp = scanner.nextLine();
+                clinicService.printDocuments(cnp);
             }
 
             else if(option == 14) {
