@@ -15,6 +15,7 @@ Interogarile care se pot face sunt urmatoarele:
 * Sa se adauge o reteta sau o trimitere unui pacient
 * Sa se afiseze toate medicamentele pe care le ia un pacient
 
+
 Obiectele sunt urmatoarele: 
 * Person
 * Patient (extends Person)
