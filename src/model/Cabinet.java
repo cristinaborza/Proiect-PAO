@@ -1,5 +1,8 @@
 package model;
 
+import com.sun.source.tree.ReturnTree;
+
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -19,6 +22,28 @@ public class Cabinet {
         this.patients = patients;
         this.appointments = appointments;
         this.patientDocuments = patientDocuments;
+    }
+
+    public List<Doctor> getDoctors() {
+        List<Doctor> doctors = new ArrayList<>();
+        for(Stuff stuffMember : stuff) {
+            if(stuffMember instanceof Doctor) {
+                doctors.add((Doctor)stuffMember);
+            }
+        }
+
+        return doctors;
+    }
+
+    public List<Assistant> getAssistants() {
+        List<Assistant> assistants = new ArrayList<>();
+        for(Stuff stuffMember : stuff) {
+            if(stuffMember instanceof Assistant) {
+                assistants.add((Assistant) stuffMember);
+            }
+        }
+
+        return assistants;
     }
 
     public TreeMap<String, List<Document>> getPatientDocuments() {

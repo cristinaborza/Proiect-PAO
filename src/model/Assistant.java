@@ -11,6 +11,7 @@ public class Assistant extends Stuff{
         this.haveSuperiorStudies = haveSuperiorStudies;
     }
 
+    public boolean getHaveSuperiorStudies() { return haveSuperiorStudies; }
     public void setHaveSuperiorStudies(boolean haveSuperiorStudies) {
         this.haveSuperiorStudies = haveSuperiorStudies;
     }

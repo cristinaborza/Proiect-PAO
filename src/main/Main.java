@@ -12,6 +12,7 @@ public class Main {
         Cabinet cabinet = new Cabinet();
         CabinetService cabinetService = new CabinetService(cabinet);
         FileReaderService fr = FileReaderService.getInstance();
+        FileWriterService fw = FileWriterService.getInstance();
         Scanner scanner = new Scanner(System.in);
 
         //read the stuff members
@@ -298,6 +299,18 @@ public class Main {
                 System.out.println("Optiunea introdusa este invalida");
             }
         }
+
+        //write the doctors in a csv file
+        List<Doctor> doctors = cabinet.getDoctors();
+        fw.writeDoctors("doctorsFinal.csv", doctors);
+
+        //write the assistants in a csv file
+        List<Assistant> assistants = cabinet.getAssistants();
+        fw.writeAssistants("assistantsFinal.csv", assistants);
+
+        //write the residents in a csv file
+        //List<Doctor> residents = cabinet.getResidents();
+        //fw.writeResidents("residentsFinal.csv", residents);
 
         /*while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");
