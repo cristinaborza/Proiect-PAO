@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Patient extends Person{
     private List<String> diseases = new ArrayList<>();
@@ -22,17 +21,5 @@ public class Patient extends Person{
 
     public void setDiseases(List<String> diseases) {
         this.diseases = diseases;
-    }
-
-    @Override
-    public void read(Scanner scanner) {
-        super.read(scanner);
-
-        System.out.println("Introduceti numarul de boli dupa care bolile:");
-        int n = Integer.parseInt(scanner.nextLine());
-        for(int i = 1; i <= n; ++i) {
-            String disease = scanner.nextLine();
-            this.diseases.add(disease);
-        }
     }
 }

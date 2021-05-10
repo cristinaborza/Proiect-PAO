@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Scanner;
-
 public abstract class Stuff extends Person{
     private int salary, experience;
 
@@ -36,17 +34,5 @@ public abstract class Stuff extends Person{
         return  super.toString() +
                 "salariu: " + salary + '\n' +
                 "experienta: " + experience + "ani\n";
-    }
-
-    @Override
-    public void read(Scanner scanner) {
-        super.read(scanner);
-
-        System.out.println("Introduceti salariul:");
-        int salary = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Introduceti numarul de ani de experinta:");
-        this.experience = Integer.parseInt(scanner.nextLine());
-        this.salary = salary;
     }
 }

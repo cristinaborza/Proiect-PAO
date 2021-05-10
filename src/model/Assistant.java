@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Scanner;
-
 public class Assistant extends Stuff{
     private boolean haveSuperiorStudies;
 
@@ -20,16 +18,7 @@ public class Assistant extends Stuff{
     @Override
     public String toString() {
         if (this.haveSuperiorStudies)
-            return super.toString() + "\n" + "Asistent cu studii superioare";
-        return super.toString() + "\n" + "Asistent fara studii superioare";
-    }
-
-    @Override
-    public void read(Scanner scanner) {
-        super.read(scanner);
-
-        System.out.println("Introduceti daca asistentul are sau nu studii superioare (T/F):");
-        String temp = scanner.nextLine();
-        this.haveSuperiorStudies = temp.equals("T");
+            return super.toString() + "Asistent cu studii superioare";
+        return super.toString() + "Asistent fara studii superioare";
     }
 }

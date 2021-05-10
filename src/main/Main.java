@@ -11,9 +11,16 @@ public class Main {
     public static void main(String[] args) {
         Cabinet cabinet = new Cabinet();
         CabinetService cabinetService = new CabinetService(cabinet);
+        FileReaderService fr = FileReaderService.getInstance();
         Scanner scanner = new Scanner(System.in);
 
-        while(true) {
+        //read all stuff
+        fr.readDoctors("doctors.csv", cabinetService);
+        fr.readAssistants("assistants.csv", cabinetService);
+
+        cabinetService.printStuff();
+
+        /*while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");
             System.out.println("1. Adaugati un angajat (medic, asistent sau rezident)");
             System.out.println("2. Actualizati datele unui angajat");
@@ -276,6 +283,6 @@ public class Main {
             else {
                 System.out.println("Optiunea introdusa este invalida");
             }
-        }
+        }*/
     }
 }

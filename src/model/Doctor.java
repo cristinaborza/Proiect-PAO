@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Scanner;
-
 public class Doctor extends Stuff{
     private String specialization;
 
@@ -25,12 +23,5 @@ public class Doctor extends Stuff{
     public String toString() {
         return  super.toString() +
                 "specializare: " + specialization + '\n';
-    }
-
-    @Override
-    public void read(Scanner scanner) {
-        super.read(scanner);
-        System.out.println("Introduceti specializarea:");
-        this.specialization = scanner.nextLine();
     }
 }
