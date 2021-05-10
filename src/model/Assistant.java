@@ -18,7 +18,7 @@ public class Assistant extends Stuff{
     @Override
     public String toString() {
         if (this.haveSuperiorStudies)
-            return super.toString() + "Asistent cu studii superioare";
-        return super.toString() + "Asistent fara studii superioare";
+            return super.toString() + "Asistent cu studii superioare\n";
+        return super.toString() + "Asistent fara studii superioare\n";
     }
 }

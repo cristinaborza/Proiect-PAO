@@ -74,7 +74,9 @@ public abstract class Person implements Comparable<Person>{
     public int compareTo(Person o) {
         if(this.lastName.compareTo(o.getLastName()) != 0)
             return this.lastName.compareTo(o.getLastName());
-        return this.firstName.compareTo(o.getFirstName());
+        if(this.firstName.compareTo(o.getFirstName()) != 0)
+            return this.firstName.compareTo(o.getFirstName());
+        return this.cnp.compareTo(o.getCnp());
     }
 
     @Override

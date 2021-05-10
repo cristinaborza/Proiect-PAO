@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Scanner;
-
 public class Resident extends Stuff{
     private int expectedGraduation;
 
@@ -19,5 +17,10 @@ public class Resident extends Stuff{
 
     public void setExpectedGraduation(int expectedGraduation) {
         this.expectedGraduation = expectedGraduation;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Numarul de ani pana la terminarea studiilor: " + expectedGraduation + "\n";
     }
 }

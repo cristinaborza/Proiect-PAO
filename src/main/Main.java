@@ -17,8 +17,15 @@ public class Main {
         //read all stuff
         fr.readDoctors("doctors.csv", cabinetService);
         fr.readAssistants("assistants.csv", cabinetService);
+        fr.readResidents("residents.csv", cabinetService);
+
+        //read the patients
+        fr.readPatients("patients.csv", cabinetService);
+
+        //interactive menu
 
         cabinetService.printStuff();
+        cabinetService.printPatients();
 
         /*while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");
