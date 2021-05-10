@@ -46,6 +46,17 @@ public class Cabinet {
         return assistants;
     }
 
+    public List<Resident> getResidents() {
+        List<Resident> residents = new ArrayList<>();
+        for(Stuff stuffMember : stuff) {
+            if(stuffMember instanceof Resident) {
+                residents.add((Resident) stuffMember);
+            }
+        }
+
+        return residents;
+    }
+
     public TreeMap<String, List<Document>> getPatientDocuments() {
         return patientDocuments;
     }

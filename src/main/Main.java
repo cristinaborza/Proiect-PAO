@@ -6,6 +6,7 @@ import service.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -309,8 +310,12 @@ public class Main {
         fw.writeAssistants("assistantsFinal.csv", assistants);
 
         //write the residents in a csv file
-        //List<Doctor> residents = cabinet.getResidents();
-        //fw.writeResidents("residentsFinal.csv", residents);
+        List<Resident> residents = cabinet.getResidents();
+        fw.writeResidents("residentsFinal.csv", residents);
+
+        //write the patients in a csv file
+        TreeSet<Patient> patients = cabinet.getPatients();
+        fw.writePatients("patientsFinal.csv", patients);
 
         /*while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");
