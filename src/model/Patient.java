@@ -24,6 +24,22 @@ public class Patient extends Person{
         this.diseases = diseases;
     }
 
+    public static String listToString(List<String> list) {
+        String ans = "";
+        for(String x : list) {
+            if(ans != "") ans += ", ";
+            ans += x;
+        }
+        if(ans == "")
+            return "Nu are boli!";
+        return ans;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Lista boli: " + listToString(diseases) + "\n";
+    }
+
     /*
     @Override
     public void read(Scanner scanner) {

@@ -176,6 +176,54 @@ public class CabinetService {
         cabinet.setPatients(patients);
     }
 
+    public void addDisease(String cnp, String disease) {
+        TreeSet<Patient> patients = cabinet.getPatients();
+        Patient patient = searchPatient(cnp);
+        patients.remove(patient);
+
+        List<String> diseases = patient.getDiseases();
+        boolean ok = true;
+        for(String d : diseases) {
+            if(d == disease) {
+                System.out.println("Pacientul are deja aceasta boala");
+                ok = false;
+                break;
+            }
+        }
+
+        if(ok) {
+            diseases.add(disease);
+            patient.setDiseases(diseases);
+        }
+
+        patients.add(patient);
+        cabinet.setPatients(patients);
+    }
+
+    public void removeDisease(String cnp, String disease) {
+        TreeSet<Patient> patients = cabinet.getPatients();
+        Patient patient = searchPatient(cnp);
+        patients.remove(patient);
+
+        List<String> diseases = patient.getDiseases();
+        boolean ok = true;
+        for(String d : diseases) {
+            if(d == disease) {
+                diseases.remove(d);
+                ok = false;
+                break;
+            }
+        }
+
+        if(ok) {
+            System.out.println("Pacientul nu are aceasta boala!");
+        }
+
+        patient.setDiseases(diseases);
+        patients.add(patient);
+        cabinet.setPatients(patients);
+    }
+
     public void deleteAppointment(int id) {
         List<Appointment> appointments = cabinet.getAppointments();
         for(Appointment appointment : appointments) {
