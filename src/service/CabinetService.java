@@ -6,22 +6,41 @@ import java.util.*;
 
 public class CabinetService {
     private final Cabinet cabinet;
+    private final AuditService auditService = new AuditService();
 
     public CabinetService(Cabinet cabinet) {
         this.cabinet = cabinet;
     }
 
     public void addStuff(Stuff stuffMember) {
+        //add the stuff member to
         TreeSet<Stuff> stuff = cabinet.getStuff();
         stuff.add(stuffMember);
         cabinet.setStuff(stuff);
+
+        //add the event to log.csv
+        if(stuffMember instanceof Doctor) {
+            auditService.logEvent("Add a Doctor");
+        }
+
+        if(stuffMember instanceof Assistant) {
+            auditService.logEvent("Add an Assistant");
+        }
+
+        if(stuffMember instanceof Resident) {
+            auditService.logEvent("Add an Resident");
+        }
     }
 
     public void printStuff() {
+        //print stuff
         TreeSet<Stuff> stuff = cabinet.getStuff();
         for(Stuff temp : stuff) {
             System.out.println(temp);
         }
+
+        //add the event to log.csv
+        auditService.logEvent("Print Stuff");
     }
 
     public Stuff searchStuff(String cnp) {
@@ -36,10 +55,16 @@ public class CabinetService {
     }
 
     public void deleteStuff(String cnp) {
+        //delete a stuff member
         Stuff stuffMember = searchStuff(cnp);
         TreeSet<Stuff> stuff = cabinet.getStuff();
         stuff.remove(stuffMember);
         cabinet.setStuff(stuff);
+
+        //add the event to log.csv
+        if(stuffMember instanceof Doctor) {
+            auditService.logEvent("Delete a Doctor");
+        }
     }
 
     public Doctor searchDoctor(String cnp) {
@@ -54,6 +79,7 @@ public class CabinetService {
     }
 
     public void updateDoctor(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, String specialization) {
+        //update the information for a doctor
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Doctor doctor = searchDoctor(cnp);
         stuff.remove(doctor);
@@ -69,6 +95,9 @@ public class CabinetService {
 
         stuff.add(doctor);
         cabinet.setStuff(stuff);
+
+        //add the event to log.csv
+        auditService.logEvent("Update a Doctor");
     }
 
     public Assistant searchAssistant(String cnp) {
@@ -83,6 +112,7 @@ public class CabinetService {
     }
 
     public void updateAssistant(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, boolean haveSuperiorStudies) {
+        //update information for an assistant
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Assistant assistant = searchAssistant(cnp);
         stuff.remove(assistant);
@@ -98,6 +128,9 @@ public class CabinetService {
 
         stuff.add(assistant);
         cabinet.setStuff(stuff);
+
+        //add event
+        auditService.logEvent("Update an Assistant");
     }
 
     public Resident searchResident(String cnp) {
@@ -112,6 +145,7 @@ public class CabinetService {
     }
 
     public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int expectedGraduation) {
+        //update information for an resident
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Resident resident = searchResident(cnp);
         stuff.remove(resident);
@@ -127,19 +161,30 @@ public class CabinetService {
 
         stuff.add(resident);
         cabinet.setStuff(stuff);
+
+        //add event
+        auditService.logEvent("Update an resident");
     }
 
     public void addPatient(Patient patient) {
+        //add the patient
         TreeSet<Patient> patients = cabinet.getPatients();
         patients.add(patient);
         cabinet.setPatients(patients);
+
+        //add event
+        auditService.logEvent("Add a patient");
     }
 
     public void printPatients() {
+        //print all patients
         TreeSet<Patient> patients = cabinet.getPatients();
         for(Patient temp : patients) {
             System.out.println(temp);
         }
+
+        //add event
+        auditService.logEvent("Print all patients");
     }
 
     public Patient searchPatient(String cnp) {
@@ -154,13 +199,18 @@ public class CabinetService {
     }
 
     public void deletePatient(String cnp) {
+        //delete the patient
         Patient patient = searchPatient(cnp);
         TreeSet<Patient> patients = cabinet.getPatients();
         patients.remove(patient);
         cabinet.setPatients(patients);
+
+        //add event
+        auditService.logEvent("Delete a patient");
     }
 
     public void updatePatient(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex) {
+        //update information for a patient
         TreeSet<Patient> patients = cabinet.getPatients();
         Patient patient = searchPatient(cnp);
         patients.remove(patient);
@@ -174,9 +224,13 @@ public class CabinetService {
 
         patients.add(patient);
         cabinet.setPatients(patients);
+
+        //log event
+        auditService.logEvent("Update a patient");
     }
 
     public void addDisease(String cnp, String disease) {
+        //add a disease to a patient
         TreeSet<Patient> patients = cabinet.getPatients();
         Patient patient = searchPatient(cnp);
         patients.remove(patient);
@@ -198,9 +252,13 @@ public class CabinetService {
 
         patients.add(patient);
         cabinet.setPatients(patients);
+
+        //log event
+        auditService.logEvent("Add a disease");
     }
 
     public void removeDisease(String cnp, String disease) {
+        //remove a disease from a patient
         TreeSet<Patient> patients = cabinet.getPatients();
         Patient patient = searchPatient(cnp);
         patients.remove(patient);
@@ -222,9 +280,13 @@ public class CabinetService {
         patient.setDiseases(diseases);
         patients.add(patient);
         cabinet.setPatients(patients);
+
+        //log event
+        auditService.logEvent("Delete a disease");
     }
 
     public void deleteAppointment(int id) {
+        //delete an appointment
         List<Appointment> appointments = cabinet.getAppointments();
         for(Appointment appointment : appointments) {
             if(appointment.getId() == id) {
@@ -233,22 +295,34 @@ public class CabinetService {
                 return;
             }
         }
+
+        //log event
+        auditService.logEvent("Delete an appointment");
     }
 
     public void addAppointment(Appointment appointment) {
+        //add an appointment
         List<Appointment> appointments = cabinet.getAppointments();
         appointments.add(appointment);
         cabinet.setAppointments(appointments);
+
+        //log event
+        auditService.logEvent("Add an appointment");
     }
 
     public void printAppointments() {
+        //print all appointments
         List<Appointment> appointments = cabinet.getAppointments();
         for(Appointment appointment : appointments) {
             System.out.println(appointment);
         }
+
+        //log event
+        auditService.logEvent("Print all appointments");
     }
 
     public void addDocument(Document document) {
+        //add a document
         Patient patient = document.getPatient();
         TreeMap<String, List<Document>> patientDocuments = cabinet.getPatientDocuments();
         if(patientDocuments.containsKey(patient.getCnp())) {
@@ -262,9 +336,13 @@ public class CabinetService {
             patientDocuments.put(patient.getCnp(), documents);
             cabinet.setPatientDocuments(patientDocuments);
         }
+
+        //log event
+        auditService.logEvent("Add a document");
     }
 
     public void printDrugs(String cnp) {
+        //print all drugs for a patient
         TreeMap<String, List<Document>> documents = cabinet.getPatientDocuments();
         List<Document> myDoc = documents.get(cnp);
         List<Drug> drugs = new ArrayList<>();
@@ -279,5 +357,8 @@ public class CabinetService {
         for(Drug drug : drugs) {
             System.out.println(drug);
         }
+
+        //log event
+        auditService.logEvent("Print all drugs");
     }
 }
