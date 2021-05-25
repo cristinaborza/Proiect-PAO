@@ -9,7 +9,10 @@ import utils.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.sql.Statement;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -93,5 +96,74 @@ public class CabinetRepository {
         }
 
         return assistants;
+    }
+
+    public int addNewDoctor(Doctor doctor) {
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(INSERT_NEW_DOCTOR, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, doctor.getFirstName());
+            preparedStatement.setString(2, doctor.getLastName());
+            preparedStatement.setInt(3, doctor.getAge());
+            preparedStatement.setString(4, doctor.getEmail());
+            preparedStatement.setString(5, doctor.getPhone());
+            preparedStatement.setString(6, doctor.getSex());
+            preparedStatement.setInt(7, doctor.getSalary());
+            preparedStatement.setInt(8, doctor.getExperience());
+            preparedStatement.setString(9, doctor.getSpecialization());
+            preparedStatement.executeUpdate();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            return Integer.parseInt(resultSet.getString(1));
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Some problem occurred during adding doctor");
+        }
+    }
+
+    public int addNewAssistant(Assistant assistant) {
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(INSERT_NEW_ASSISTANT, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, assistant.getFirstName());
+            preparedStatement.setString(2, assistant.getLastName());
+            preparedStatement.setInt(3, assistant.getAge());
+            preparedStatement.setString(4, assistant.getEmail());
+            preparedStatement.setString(5, assistant.getPhone());
+            preparedStatement.setString(6, assistant.getSex());
+            preparedStatement.setInt(7, assistant.getSalary());
+            preparedStatement.setInt(8, assistant.getExperience());
+            preparedStatement.setString(9, assistant.getStudies());
+            preparedStatement.executeUpdate();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            return Integer.parseInt(resultSet.getString(1));
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Some problem occurred during adding assistant");
+        }
+    }
+
+    public int addNewResident(Resident resident) {
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(INSERT_NEW_RESIDENT, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, resident.getFirstName());
+            preparedStatement.setString(2, resident.getLastName());
+            preparedStatement.setInt(3, resident.getAge());
+            preparedStatement.setString(4, resident.getEmail());
+            preparedStatement.setString(5, resident.getPhone());
+            preparedStatement.setString(6, resident.getSex());
+            preparedStatement.setInt(7, resident.getSalary());
+            preparedStatement.setInt(8, resident.getExperience());
+            preparedStatement.setDate(9, Date.valueOf(resident.getGraduationDate()));
+            preparedStatement.executeUpdate();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            return Integer.parseInt(resultSet.getString(1));
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Some problem occurred during adding resident");
+        }
     }
 }

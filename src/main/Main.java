@@ -4,6 +4,7 @@ import model.*;
 import service.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Main {
@@ -14,57 +15,113 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         //read the stuff members
-        List<Doctor> doctors = cabinetService.retrieveAllDoctors();
-        for(Doctor doctor : doctors) {
+        List<Doctor> doctorList = cabinetService.retrieveAllDoctors();
+        for(Doctor doctor : doctorList) {
             cabinetService.addStuff(doctor);
         }
 
-        List<Resident> residents = cabinetService.retrieveAllResidents();
-        for(Resident resident : residents) {
+        List<Resident> residentList = cabinetService.retrieveAllResidents();
+        for(Resident resident : residentList) {
             cabinetService.addStuff(resident);
         }
 
-        List<Assistant> assistants = cabinetService.retrieveAllAssistants();
-        for(Assistant assistant : assistants) {
+        List<Assistant> assistantList = cabinetService.retrieveAllAssistants();
+        for(Assistant assistant : assistantList) {
             cabinetService.addStuff(assistant);
         }
 
         //read the patients from database
-        List<Patient> patients = cabinetService.retrieveAllPatients();
-        for(Patient patient : patients) {
+        List<Patient> patientList = cabinetService.retrieveAllPatients();
+        for(Patient patient : patientList) {
             cabinetService.addPatient(patient);
         }
 
-        cabinetService.printPatients();
-        cabinetService.printStuff();
-
         //interactive menu
-        /*while(true) {
-            System.out.println("Alegeti una dintre urmatoarele optiuni:");
-            System.out.println("1. Adaugati un angajat (medic, asistent sau rezident)");
-            System.out.println("1. Actualizati datele unui angajat");
-            System.out.println("2. Concediati in angajat");
-            System.out.println("3. Afisati toti angajatii in ordine alfabetica");
-            System.out.println("5. Adaugati un pacient");
-            System.out.println("4. Actualizati datele unui pacient");
-            System.out.println("5. Adaugati o boala unui pacient");
-            System.out.println("6. Scoateti o boala unui pacient");
-            System.out.println("7. Stergeti un pacient");
-            System.out.println("8. Afisati toti pacientii in ordine alfabetica");
-            System.out.println("9. Adaugati o programare");
-            System.out.println("10. Anulati o programare");
-            System.out.println("11. Afisati toate programarile");
-            System.out.println("12. Adaugati o reteta sau o trimitere unui pacient");
-            System.out.println("13. Pentru un pacient afisati toate medicamentele pe care le ia");
-            System.out.println("14. Iesire");
+        while(true) {
+            System.out.println("Chose one of the following options:");
+            System.out.println("1. Add a stuff member (doctor, assistant or resident)");
+            System.out.println("1. Update a stuff member");
+            System.out.println("2. Fire a stuff member");
+            System.out.println("3. Print all employees in alphabetical order");
+            System.out.println("5. Add a patient");
+            System.out.println("4. Update a patient");
+            System.out.println("5. Add a disease for a patient");
+            System.out.println("6. Cure a disease for a patient");
+            System.out.println("7. Delete a patient");
+            System.out.println("8. Print all patients in alphabetical order");
+            System.out.println("9. Add an appointment");
+            System.out.println("10. Delete an appointment");
+            System.out.println("11. Print all appointments");
+            System.out.println("12. Add a prescription or a referral ");
+            System.out.println("13. Print all the medications a patient is taking");
+            System.out.println("14. Exit");
 
             int option = Integer.parseInt(scanner.nextLine());
 
+            switch(option) {
+                case 1:
+                    System.out.println("First name: ");
+                    String firstName = scanner.nextLine();
+
+                    System.out.println("Last name: ");
+                    String lastName = scanner.nextLine();
+
+                    System.out.println("Age: ");
+                    int age = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("Email: ");
+                    String email = scanner.nextLine();
+
+                    System.out.println("Phone: ");
+                    String phone = scanner.nextLine();
+
+                    System.out.println("Sex(F/M): ");
+                    String sex = scanner.nextLine();
+
+                    System.out.println("Salary: ");
+                    int salary = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("Experience: ");
+                    int experience = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("What kind of employee do you want to add? (1 - doctor, 2 - assistant, 3 - resident) ");
+                    int type = Integer.parseInt(scanner.nextLine());
+                    if(type == 1) {
+                        System.out.println("Specialization: ");
+                        String specialization = scanner.nextLine();
+
+                        Doctor doctor = new Doctor(firstName, lastName, age, email, phone, sex, salary, experience, specialization);
+                        int doctorID = cabinetService.addNewDoctor(doctor);
+                        doctor.setId(doctorID);
+                        cabinetService.addStuff(doctor);
+                    }
+
+                    else if(type == 2) {
+                        System.out.println("Studies: ");
+                        String studies = scanner.nextLine();
+
+                        Assistant assistant = new Assistant(firstName, lastName, age, email, phone, sex, salary, experience, studies);
+                        int assistantId = cabinetService.addNewAssistant(assistant);
+                        assistant.setId(assistantId);
+                        cabinetService.addStuff(assistant);
+                    }
+
+                    else {
+                        System.out.println("Expected graduation date: (dd/MM/yyyy)");
+                        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        LocalDate localDate = LocalDate.parse(scanner.nextLine(), format);
+
+                        Resident resident = new Resident(firstName, lastName, age, email, phone, sex, salary, experience, localDate);
+                        int residentId = cabinetService.addNewResident(resident);
+                        resident.setId(residentId);
+                        cabinetService.addStuff(resident);
+                    }
+            }
+
+
+            /*
             //update data for a stuff member
             if(option == 1) {
-                System.out.println("Introduceti cnp-ul persoanei careia vreti sa ii modificati datele:");
-                String cnp = scanner.nextLine();
-
                 System.out.println("Introduceti noul nume: ");
                 String lastName = scanner.nextLine();
 
@@ -314,9 +371,11 @@ public class Main {
 
             else {
                 System.out.println("Optiunea introdusa este invalida");
-            }
+            }*/
+            break;
         }
 
+        /*
         //write the doctors in a csv file
         List<Doctor> doctors = cabinet.getDoctors();
         fw.writeDoctors("doctorsFinal.csv", doctors);
@@ -331,6 +390,8 @@ public class Main {
 
         //write the patients in a csv file
         TreeSet<Patient> patients = cabinet.getPatients();
-        fw.writePatients("patientsFinal.csv", patients); */
+        fw.writePatients("patientsFinal.csv", patients);*/
+
+        cabinetService.printStuff();
     }
 }

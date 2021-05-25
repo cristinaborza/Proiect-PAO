@@ -13,6 +13,12 @@ public abstract class Stuff extends Person{
         this.experience = experience;
     }
 
+    public Stuff(String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience) {
+        super(firstName, lastName, age, email, phone, sex);
+        this.salary = salary;
+        this.experience = experience;
+    }
+
     public int getSalary() {
         return salary;
     }
@@ -32,7 +38,7 @@ public abstract class Stuff extends Person{
     @Override
     public String toString() {
         return  super.toString() +
-                "salariu: " + salary + '\n' +
-                "experienta: " + experience + "ani\n";
+                "Salary: " + salary + '\n' +
+                "Experience: " + experience + "ani\n";
     }
 }

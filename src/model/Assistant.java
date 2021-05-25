@@ -6,8 +6,14 @@ public class Assistant extends Stuff{
     public Assistant() {
         super();
     }
+
     public Assistant(int id, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience, String studies) {
         super(id, firstName, lastName, age, email, phone, sex, salary, experience);
+        this.studies = studies;
+    }
+
+    public Assistant(String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience, String studies) {
+        super(firstName, lastName, age, email, phone, sex, salary, experience);
         this.studies = studies;
     }
 

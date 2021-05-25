@@ -10,6 +10,10 @@ public class Doctor extends Stuff{
         super(id, firstName, lastName, age, email, phone, sex, salary, experience);
         this.specialization = specialization;
     }
+    public Doctor(String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience, String specialization) {
+        super(firstName, lastName, age, email, phone, sex, salary, experience);
+        this.specialization = specialization;
+    }
 
     public String getSpecialization() {
         return specialization;

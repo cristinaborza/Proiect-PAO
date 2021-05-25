@@ -78,7 +78,7 @@ public class FileWriterService {
             output.append("\n");
 
             for(Resident resident : residents) {
-                String[] line = {String.valueOf(resident.getId()), resident.getFirstName(), resident.getLastName(), String.valueOf(resident.getAge()), resident.getEmail(), resident.getPhone(), String.valueOf(resident.getSex()), String.valueOf(resident.getSalary()), String.valueOf(resident.getExperience()), String.valueOf(resident.getExpectedGraduation())};
+                String[] line = {String.valueOf(resident.getId()), resident.getFirstName(), resident.getLastName(), String.valueOf(resident.getAge()), resident.getEmail(), resident.getPhone(), String.valueOf(resident.getSex()), String.valueOf(resident.getSalary()), String.valueOf(resident.getExperience()), String.valueOf(resident.getGraduationDate())};
                 output.append(String.join(",", line));
                 output.append("\n");
             }

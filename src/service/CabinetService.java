@@ -27,6 +27,18 @@ public class CabinetService {
         return cabinetRepository.retrieveAllAssistants();
     }
 
+    public int addNewDoctor(Doctor doctor) {
+        return cabinetRepository.addNewDoctor(doctor);
+    }
+
+    public int addNewAssistant(Assistant assistant) {
+        return cabinetRepository.addNewAssistant(assistant);
+    }
+
+    public int addNewResident(Resident resident) {
+        return cabinetRepository.addNewResident(resident);
+    }
+
     public void addStuff(Stuff stuffMember) {
         //add the stuff member to
         TreeSet<Stuff> stuff = cabinet.getStuff();
@@ -34,17 +46,14 @@ public class CabinetService {
         cabinet.setStuff(stuff);
 
         //add the event to log.csv
-        if(stuffMember instanceof Doctor) {
+        if(stuffMember instanceof Doctor)
             auditService.logEvent("Add a Doctor");
-        }
 
-        if(stuffMember instanceof Assistant) {
+        if(stuffMember instanceof Assistant)
             auditService.logEvent("Add an Assistant");
-        }
 
-        if(stuffMember instanceof Resident) {
+        if(stuffMember instanceof Resident)
             auditService.logEvent("Add an Resident");
-        }
     }
 
     public void printStuff() {
@@ -159,7 +168,7 @@ public class CabinetService {
         return new Resident();
     }
 
-    public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, LocalDate expectedGraduation) {
+    public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, LocalDate graduationDate) {
         //update information for an resident
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Resident resident = searchResident(cnp);
@@ -172,7 +181,7 @@ public class CabinetService {
         resident.setPhone(phone);
         resident.setSex(sex);
         resident.setSalary(salary);
-        resident.setExpectedGraduation(expectedGraduation);
+        resident.setGraduationDate(graduationDate);
 
         stuff.add(resident);
         cabinet.setStuff(stuff);

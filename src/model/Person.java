@@ -7,8 +7,18 @@ public abstract class Person implements Comparable<Person>{
     private String email, phone, sex;
 
     public Person() { }
+
     public Person(int id, String firstName, String lastName, int age, String email, String phone, String sex) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.phone = phone;
+        this.sex = sex;
+    }
+
+    public Person(String firstName, String lastName, int age, String email, String phone, String sex) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -88,9 +98,8 @@ public abstract class Person implements Comparable<Person>{
 
     @Override
     public String toString() {
-        return  "Nume: " + lastName + '\n' +
-                "Prenume: " + firstName + '\n' +
-                "Varsta: " + age + '\n' +
-                "id: " + id + '\n';
+        return  "First name: " + firstName + '\n' +
+                "Last name: " + lastName + '\n' +
+                "Age: " + age + '\n';
     }
 }

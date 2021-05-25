@@ -10,11 +10,15 @@ public class Patient extends Person{
     public  Patient() {
         super();
     }
-
     public Patient(int id, String firstName, String lastName, int age, String email, String phone, String sex, List<String> diseases) {
         super(id, firstName, lastName, age, email, phone, sex);
         this.diseases = diseases;
     }
+    public Patient(String firstName, String lastName, int age, String email, String phone, String sex, List<String> diseases) {
+        super(firstName, lastName, age, email, phone, sex);
+        this.diseases = diseases;
+    }
+
 
     public List<String> getDiseases() {
         return diseases;
