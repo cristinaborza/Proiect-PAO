@@ -3,16 +3,28 @@ package service;
 import model.*;
 import repository.CabinetRepository;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class CabinetService {
     private final Cabinet cabinet;
     private final AuditService auditService = new AuditService();
-
     private CabinetRepository cabinetRepository = new CabinetRepository();
 
     public CabinetService(Cabinet cabinet) {
         this.cabinet = cabinet;
+    }
+
+    public List<Doctor> retrieveAllDoctors() {
+        return cabinetRepository.retrieveAllDoctors();
+    }
+
+    public List<Resident> retrieveAllResidents() {
+        return cabinetRepository.retrieveAllResidents();
+    }
+
+    public List<Assistant> retrieveAllAssistants() {
+        return cabinetRepository.retrieveAllAssistants();
     }
 
     public void addStuff(Stuff stuffMember) {
@@ -114,7 +126,7 @@ public class CabinetService {
         return new Assistant();
     }
 
-    public void updateAssistant(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, boolean haveSuperiorStudies) {
+    public void updateAssistant(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, String studies) {
         //update information for an assistant
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Assistant assistant = searchAssistant(cnp);
@@ -127,7 +139,7 @@ public class CabinetService {
         assistant.setPhone(phone);
         assistant.setSex(sex);
         assistant.setSalary(salary);
-        assistant.setHaveSuperiorStudies(haveSuperiorStudies);
+        assistant.setStudies(studies);
 
         stuff.add(assistant);
         cabinet.setStuff(stuff);
@@ -147,7 +159,7 @@ public class CabinetService {
         return new Resident();
     }
 
-    public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int expectedGraduation) {
+    public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, LocalDate expectedGraduation) {
         //update information for an resident
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Resident resident = searchResident(cnp);

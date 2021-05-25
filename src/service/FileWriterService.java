@@ -55,7 +55,7 @@ public class FileWriterService {
             output.append("\n");
 
             for(Assistant assistant : assistants) {
-                String[] line = {String.valueOf(assistant.getId()), assistant.getFirstName(), assistant.getLastName(), String.valueOf(assistant.getAge()), assistant.getEmail(), assistant.getPhone(), String.valueOf(assistant.getSex()), String.valueOf(assistant.getSalary()), String.valueOf(assistant.getExperience()), String.valueOf(assistant.getHaveSuperiorStudies())};
+                String[] line = {String.valueOf(assistant.getId()), assistant.getFirstName(), assistant.getLastName(), String.valueOf(assistant.getAge()), assistant.getEmail(), assistant.getPhone(), String.valueOf(assistant.getSex()), String.valueOf(assistant.getSalary()), String.valueOf(assistant.getExperience()), String.valueOf(assistant.getStudies())};
                 output.append(String.join(",", line));
                 output.append("\n");
             }

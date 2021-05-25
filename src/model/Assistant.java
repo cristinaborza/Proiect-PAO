@@ -1,25 +1,23 @@
 package model;
 
 public class Assistant extends Stuff{
-    private boolean haveSuperiorStudies;
+    private String studies;
 
     public Assistant() {
         super();
     }
-    public Assistant(int id, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience, boolean haveSuperiorStudies) {
+    public Assistant(int id, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience, String studies) {
         super(id, firstName, lastName, age, email, phone, sex, salary, experience);
-        this.haveSuperiorStudies = haveSuperiorStudies;
+        this.studies = studies;
     }
 
-    public boolean getHaveSuperiorStudies() { return haveSuperiorStudies; }
-    public void setHaveSuperiorStudies(boolean haveSuperiorStudies) {
-        this.haveSuperiorStudies = haveSuperiorStudies;
+    public String getStudies() { return studies; }
+    public void setStudies(String studies) {
+        this.studies = studies;
     }
 
     @Override
     public String toString() {
-        if (this.haveSuperiorStudies)
-            return super.toString() + "Asistent cu studii superioare\n";
-        return super.toString() + "Asistent fara studii superioare\n";
+        return super.toString() + studies + '\n';
     }
 }

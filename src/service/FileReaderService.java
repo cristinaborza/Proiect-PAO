@@ -3,6 +3,7 @@ package service;
 import model.*;
 import java.io.*;
 import java.nio.file.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class FileReaderService {
                 String sex = dataLine[6];
                 int salary = Integer.parseInt(dataLine[7]);
                 int experience = Integer.parseInt(dataLine[8]);
-                boolean studies = dataLine[9].equals("T");
+                String studies = dataLine[9];
 
                 //add the assistants to the cabinet
                 Assistant assistant = new Assistant(id, firstName, lastName, age, email, phone, sex, salary, experience, studies);
@@ -96,7 +97,7 @@ public class FileReaderService {
                 String sex = dataLine[6];
                 int salary = Integer.parseInt(dataLine[7]);
                 int experience = Integer.parseInt(dataLine[8]);
-                int expectedGraduation = Integer.parseInt(dataLine[9]);
+                LocalDate expectedGraduation = LocalDate.parse(dataLine[9]);
 
                 //add the residents to the cabinet
                 Resident resident = new Resident(id, firstName, lastName, age, email, phone, sex, salary, experience, expectedGraduation);
