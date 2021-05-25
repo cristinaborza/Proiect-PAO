@@ -6,8 +6,8 @@ public class Doctor extends Stuff{
     public Doctor() {
         super();
     }
-    public Doctor(String  cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience, String specialization) {
-        super(cnp, firstName, lastName, age, email, phone, sex, salary, experience);
+    public Doctor(int  id, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience, String specialization) {
+        super(id, firstName, lastName, age, email, phone, sex, salary, experience);
         this.specialization = specialization;
     }
 

@@ -27,19 +27,19 @@ public class FileReaderService {
                 String[] dataLine = line.split(",");
 
                 //read the data
-                String cnp = dataLine[0];
+                int id = Integer.parseInt(dataLine[0]);
                 String firstName = dataLine[1];
                 String lastName = dataLine[2];
                 int age = Integer.parseInt(dataLine[3]);
                 String email = dataLine[4];
                 String phone = dataLine[5];
-                boolean sex = dataLine[6].equals("F");
+                String sex = dataLine[6];
                 int salary = Integer.parseInt(dataLine[7]);
                 int experience = Integer.parseInt(dataLine[8]);
                 String specialization = dataLine[9];
 
                 //add the doctors to the cabinet
-                Doctor doctor = new Doctor(cnp, firstName, lastName, age, email, phone, sex, salary, experience, specialization);
+                Doctor doctor = new Doctor(id, firstName, lastName, age, email, phone, sex, salary, experience, specialization);
                 cabinetService.addStuff(doctor);
             }
         } catch (NoSuchFileException e) {
@@ -57,19 +57,19 @@ public class FileReaderService {
                 String[] dataLine = line.split(",");
 
                 //read the data
-                String cnp = dataLine[0];
+                int id = Integer.parseInt(dataLine[0]);
                 String firstName = dataLine[1];
                 String lastName = dataLine[2];
                 int age = Integer.parseInt(dataLine[3]);
                 String email = dataLine[4];
                 String phone = dataLine[5];
-                boolean sex = dataLine[6].equals("F");
+                String sex = dataLine[6];
                 int salary = Integer.parseInt(dataLine[7]);
                 int experience = Integer.parseInt(dataLine[8]);
                 boolean studies = dataLine[9].equals("T");
 
                 //add the assistants to the cabinet
-                Assistant assistant = new Assistant(cnp, firstName, lastName, age, email, phone, sex, salary, experience, studies);
+                Assistant assistant = new Assistant(id, firstName, lastName, age, email, phone, sex, salary, experience, studies);
                 cabinetService.addStuff(assistant);
             }
         } catch (NoSuchFileException e) {
@@ -87,19 +87,19 @@ public class FileReaderService {
                 String[] dataLine = line.split(",");
 
                 //read the data
-                String cnp = dataLine[0];
+                int id = Integer.parseInt(dataLine[0]);
                 String firstName = dataLine[1];
                 String lastName = dataLine[2];
                 int age = Integer.parseInt(dataLine[3]);
                 String email = dataLine[4];
                 String phone = dataLine[5];
-                boolean sex = dataLine[6].equals("F");
+                String sex = dataLine[6];
                 int salary = Integer.parseInt(dataLine[7]);
                 int experience = Integer.parseInt(dataLine[8]);
                 int expectedGraduation = Integer.parseInt(dataLine[9]);
 
                 //add the residents to the cabinet
-                Resident resident = new Resident(cnp, firstName, lastName, age, email, phone, sex, salary, experience, expectedGraduation);
+                Resident resident = new Resident(id, firstName, lastName, age, email, phone, sex, salary, experience, expectedGraduation);
                 cabinetService.addStuff(resident);
             }
         } catch (NoSuchFileException e) {
@@ -117,17 +117,17 @@ public class FileReaderService {
                 String[] dataLine = line.split(",");
 
                 //read the data
-                String cnp = dataLine[0];
+                int id = Integer.parseInt(dataLine[0]);
                 String firstName = dataLine[1];
                 String lastName = dataLine[2];
                 int age = Integer.parseInt(dataLine[3]);
                 String email = dataLine[4];
                 String phone = dataLine[5];
-                boolean sex = dataLine[6].equals("F");
+                String sex = dataLine[6];
                 List<String> diseases = new ArrayList<>();
 
                 //add the patients to the cabinet
-                Patient patient = new Patient(cnp, firstName, lastName, age, email, phone, sex, diseases);
+                Patient patient = new Patient(id, firstName, lastName, age, email, phone, sex, diseases);
                 cabinetService.addPatient(patient);
             }
         } catch (NoSuchFileException e) {

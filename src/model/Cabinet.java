@@ -1,8 +1,5 @@
 package model;
 
-import com.sun.source.tree.ReturnTree;
-
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -13,10 +10,10 @@ public class Cabinet {
     private TreeSet<Stuff> stuff = new TreeSet<>();
     private TreeSet<Patient> patients = new TreeSet<>();
     private List<Appointment> appointments = new ArrayList<>();
-    private TreeMap<String, List<Document>> patientDocuments = new TreeMap<>();
+    private TreeMap<Integer, List<Document>> patientDocuments = new TreeMap<>();
 
     public Cabinet() { }
-    public Cabinet(String location, TreeSet<Stuff> stuff, TreeSet<Patient> patients, List<Appointment> appointments, TreeMap<String, List<Document>> patientDocuments) {
+    public Cabinet(String location, TreeSet<Stuff> stuff, TreeSet<Patient> patients, List<Appointment> appointments, TreeMap<Integer, List<Document>> patientDocuments) {
         this.location = location;
         this.stuff = stuff;
         this.patients = patients;
@@ -57,20 +54,12 @@ public class Cabinet {
         return residents;
     }
 
-    public TreeMap<String, List<Document>> getPatientDocuments() {
+    public TreeMap<Integer, List<Document>> getPatientDocuments() {
         return patientDocuments;
     }
 
-    public void setPatientDocuments(TreeMap<String, List<Document>> patientDocuments) {
+    public void setPatientDocuments(TreeMap<Integer, List<Document>> patientDocuments) {
         this.patientDocuments = patientDocuments;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public TreeSet<Stuff> getStuff() {

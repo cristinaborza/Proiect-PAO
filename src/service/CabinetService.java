@@ -1,12 +1,15 @@
 package service;
 
 import model.*;
+import repository.CabinetRepository;
 
 import java.util.*;
 
 public class CabinetService {
     private final Cabinet cabinet;
     private final AuditService auditService = new AuditService();
+
+    private CabinetRepository cabinetRepository = new CabinetRepository();
 
     public CabinetService(Cabinet cabinet) {
         this.cabinet = cabinet;
@@ -46,7 +49,7 @@ public class CabinetService {
     public Stuff searchStuff(String cnp) {
         TreeSet<Stuff> stuff = cabinet.getStuff();
         for(Stuff currentStuff : stuff) {
-            if(cnp.equals(currentStuff.getCnp())) {
+            if(cnp.equals(currentStuff.getId())) {
                 return currentStuff;
             }
         }
@@ -70,7 +73,7 @@ public class CabinetService {
     public Doctor searchDoctor(String cnp) {
         TreeSet<Stuff> stuff = cabinet.getStuff();
         for(Stuff currentStuff : stuff) {
-            if(cnp.equals(currentStuff.getCnp()) && currentStuff instanceof Doctor) {
+            if(cnp.equals(currentStuff.getId()) && currentStuff instanceof Doctor) {
                 return (Doctor) currentStuff;
             }
         }
@@ -78,7 +81,7 @@ public class CabinetService {
         return new Doctor();
     }
 
-    public void updateDoctor(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, String specialization) {
+    public void updateDoctor(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, String specialization) {
         //update the information for a doctor
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Doctor doctor = searchDoctor(cnp);
@@ -103,7 +106,7 @@ public class CabinetService {
     public Assistant searchAssistant(String cnp) {
         TreeSet<Stuff> stuff = cabinet.getStuff();
         for(Stuff currentStuff : stuff) {
-            if(cnp.equals(currentStuff.getCnp()) && currentStuff instanceof Assistant) {
+            if(cnp.equals(currentStuff.getId()) && currentStuff instanceof Assistant) {
                 return (Assistant) currentStuff;
             }
         }
@@ -111,7 +114,7 @@ public class CabinetService {
         return new Assistant();
     }
 
-    public void updateAssistant(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, boolean haveSuperiorStudies) {
+    public void updateAssistant(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, boolean haveSuperiorStudies) {
         //update information for an assistant
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Assistant assistant = searchAssistant(cnp);
@@ -136,7 +139,7 @@ public class CabinetService {
     public Resident searchResident(String cnp) {
         TreeSet<Stuff> stuff = cabinet.getStuff();
         for(Stuff currentStuff : stuff) {
-            if(cnp.equals(currentStuff.getCnp()) && currentStuff instanceof Resident) {
+            if(cnp.equals(currentStuff.getId()) && currentStuff instanceof Resident) {
                 return (Resident) currentStuff;
             }
         }
@@ -144,7 +147,7 @@ public class CabinetService {
         return new Resident();
     }
 
-    public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int expectedGraduation) {
+    public void updateResident(String cnp, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int expectedGraduation) {
         //update information for an resident
         TreeSet<Stuff> stuff = cabinet.getStuff();
         Resident resident = searchResident(cnp);
@@ -176,21 +179,25 @@ public class CabinetService {
         auditService.logEvent("Add a patient");
     }
 
+    public List<Patient> retrieveAllPatients() {
+        return cabinetRepository.retrieveAllPatients();
+    }
+
     public void printPatients() {
-        //print all patients
+        /*//print all patients
         TreeSet<Patient> patients = cabinet.getPatients();
         for(Patient temp : patients) {
             System.out.println(temp);
         }
 
         //add event
-        auditService.logEvent("Print all patients");
+        auditService.logEvent("Print all patients");*/
     }
 
     public Patient searchPatient(String cnp) {
         TreeSet<Patient> patients = cabinet.getPatients();
         for(Patient currentPatient : patients) {
-            if(cnp.equals(currentPatient.getCnp())) {
+            if(cnp.equals(currentPatient.getId())) {
                 return currentPatient;
             }
         }
@@ -209,7 +216,7 @@ public class CabinetService {
         auditService.logEvent("Delete a patient");
     }
 
-    public void updatePatient(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex) {
+    public void updatePatient(String cnp, String firstName, String lastName, int age, String email, String phone, String sex) {
         //update information for a patient
         TreeSet<Patient> patients = cabinet.getPatients();
         Patient patient = searchPatient(cnp);
@@ -324,16 +331,16 @@ public class CabinetService {
     public void addDocument(Document document) {
         //add a document
         Patient patient = document.getPatient();
-        TreeMap<String, List<Document>> patientDocuments = cabinet.getPatientDocuments();
-        if(patientDocuments.containsKey(patient.getCnp())) {
-            List<Document> documents = patientDocuments.get(patient.getCnp());
+        TreeMap<Integer, List<Document>> patientDocuments = cabinet.getPatientDocuments();
+        if(patientDocuments.containsKey(patient.getId())) {
+            List<Document> documents = patientDocuments.get(patient.getId());
             documents.add(document);
-            patientDocuments.put(patient.getCnp(), documents);
+            patientDocuments.put(patient.getId(), documents);
             cabinet.setPatientDocuments(patientDocuments);
         } else {
             List<Document> documents = new ArrayList<>();
             documents.add(document);
-            patientDocuments.put(patient.getCnp(), documents);
+            patientDocuments.put(patient.getId(), documents);
             cabinet.setPatientDocuments(patientDocuments);
         }
 
@@ -343,7 +350,7 @@ public class CabinetService {
 
     public void printDrugs(String cnp) {
         //print all drugs for a patient
-        TreeMap<String, List<Document>> documents = cabinet.getPatientDocuments();
+        TreeMap<Integer, List<Document>> documents = cabinet.getPatientDocuments();
         List<Document> myDoc = documents.get(cnp);
         List<Drug> drugs = new ArrayList<>();
         for(Document document : myDoc) {

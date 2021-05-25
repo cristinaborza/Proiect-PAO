@@ -16,6 +16,10 @@ public class Main {
         FileWriterService fw = FileWriterService.getInstance();
         Scanner scanner = new Scanner(System.in);
 
+        List<Patient> patients = cabinetService.retrieveAllPatients();
+        System.out.println(patients);
+
+        /*
         //read the stuff members
         fr.readDoctors("doctors.csv", cabinetService);
         fr.readAssistants("assistants.csv", cabinetService);
@@ -27,9 +31,11 @@ public class Main {
         //interactive menu
         while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");
+            System.out.println("1. Adaugati un angajat (medic, asistent sau rezident)");
             System.out.println("1. Actualizati datele unui angajat");
             System.out.println("2. Concediati in angajat");
             System.out.println("3. Afisati toti angajatii in ordine alfabetica");
+            System.out.println("5. Adaugati un pacient");
             System.out.println("4. Actualizati datele unui pacient");
             System.out.println("5. Adaugati o boala unui pacient");
             System.out.println("6. Scoateti o boala unui pacient");
@@ -315,7 +321,7 @@ public class Main {
 
         //write the patients in a csv file
         TreeSet<Patient> patients = cabinet.getPatients();
-        fw.writePatients("patientsFinal.csv", patients);
+        fw.writePatients("patientsFinal.csv", patients); */
 
         /*while(true) {
             System.out.println("Alegeti una dintre urmatoarele optiuni:");

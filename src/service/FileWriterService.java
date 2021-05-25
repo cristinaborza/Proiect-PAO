@@ -32,7 +32,7 @@ public class FileWriterService {
             output.append("\n");
 
             for(Doctor doctor : doctors) {
-                String[] line = {doctor.getCnp(), doctor.getFirstName(), doctor.getLastName(), String.valueOf(doctor.getAge()), doctor.getEmail(), doctor.getPhone(), String.valueOf(doctor.getSex()), String.valueOf(doctor.getSalary()), String.valueOf(doctor.getExperience()), doctor.getSpecialization()};
+                String[] line = {String.valueOf(doctor.getId()), doctor.getFirstName(), doctor.getLastName(), String.valueOf(doctor.getAge()), doctor.getEmail(), doctor.getPhone(), String.valueOf(doctor.getSex()), String.valueOf(doctor.getSalary()), String.valueOf(doctor.getExperience()), doctor.getSpecialization()};
                 output.append(String.join(",", line));
                 output.append("\n");
             }
@@ -55,7 +55,7 @@ public class FileWriterService {
             output.append("\n");
 
             for(Assistant assistant : assistants) {
-                String[] line = {assistant.getCnp(), assistant.getFirstName(), assistant.getLastName(), String.valueOf(assistant.getAge()), assistant.getEmail(), assistant.getPhone(), String.valueOf(assistant.getSex()), String.valueOf(assistant.getSalary()), String.valueOf(assistant.getExperience()), String.valueOf(assistant.getHaveSuperiorStudies())};
+                String[] line = {String.valueOf(assistant.getId()), assistant.getFirstName(), assistant.getLastName(), String.valueOf(assistant.getAge()), assistant.getEmail(), assistant.getPhone(), String.valueOf(assistant.getSex()), String.valueOf(assistant.getSalary()), String.valueOf(assistant.getExperience()), String.valueOf(assistant.getHaveSuperiorStudies())};
                 output.append(String.join(",", line));
                 output.append("\n");
             }
@@ -78,7 +78,7 @@ public class FileWriterService {
             output.append("\n");
 
             for(Resident resident : residents) {
-                String[] line = {resident.getCnp(), resident.getFirstName(), resident.getLastName(), String.valueOf(resident.getAge()), resident.getEmail(), resident.getPhone(), String.valueOf(resident.getSex()), String.valueOf(resident.getSalary()), String.valueOf(resident.getExperience()), String.valueOf(resident.getExpectedGraduation())};
+                String[] line = {String.valueOf(resident.getId()), resident.getFirstName(), resident.getLastName(), String.valueOf(resident.getAge()), resident.getEmail(), resident.getPhone(), String.valueOf(resident.getSex()), String.valueOf(resident.getSalary()), String.valueOf(resident.getExperience()), String.valueOf(resident.getExpectedGraduation())};
                 output.append(String.join(",", line));
                 output.append("\n");
             }
@@ -101,7 +101,7 @@ public class FileWriterService {
             output.append("\n");
 
             for(Patient patient : patients) {
-                String[] line = {patient.getCnp(), patient.getFirstName(), patient.getLastName(), String.valueOf(patient.getAge()), patient.getEmail(), patient.getPhone(), String.valueOf(patient.getSex()), String.valueOf(patient.getDiseases().size())};
+                String[] line = {String.valueOf(patient.getId()), patient.getFirstName(), patient.getLastName(), String.valueOf(patient.getAge()), patient.getEmail(), patient.getPhone(), String.valueOf(patient.getSex()), String.valueOf(patient.getDiseases().size())};
                 output.append(String.join(",", line));
                 output.append("\n");
             }

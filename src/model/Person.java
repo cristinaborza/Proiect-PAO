@@ -1,15 +1,14 @@
 package model;
 
 public abstract class Person implements Comparable<Person>{
-    private String cnp;
+    private int id;
     private String firstName, lastName;
     private int age;
-    private String email, phone;
-    private boolean sex;
+    private String email, phone, sex;
 
     public Person() { }
-    public Person(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex) {
-        this.cnp = cnp;
+    public Person(int id, String firstName, String lastName, int age, String email, String phone, String sex) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -18,12 +17,12 @@ public abstract class Person implements Comparable<Person>{
         this.sex = sex;
     }
 
-    public String getCnp() {
-        return cnp;
+    public int getId() {
+        return id;
     }
 
-    public void setCnp(String cnp) {
-        this.cnp = cnp;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -66,11 +65,11 @@ public abstract class Person implements Comparable<Person>{
         this.phone = phone;
     }
 
-    public boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -80,7 +79,11 @@ public abstract class Person implements Comparable<Person>{
             return this.lastName.compareTo(o.getLastName());
         if(this.firstName.compareTo(o.getFirstName()) != 0)
             return this.firstName.compareTo(o.getFirstName());
-        return this.cnp.compareTo(o.getCnp());
+        if(this.id < o.getId())
+            return -1;
+        if(this.id == o.getId())
+            return 0;
+        return 1;
     }
 
     @Override
@@ -88,6 +91,6 @@ public abstract class Person implements Comparable<Person>{
         return  "Nume: " + lastName + '\n' +
                 "Prenume: " + firstName + '\n' +
                 "Varsta: " + age + '\n' +
-                "CNP: " + cnp + '\n';
+                "id: " + id + '\n';
     }
 }

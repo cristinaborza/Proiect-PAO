@@ -7,8 +7,8 @@ public abstract class Stuff extends Person{
         super();
     }
 
-    public Stuff(String cnp, String firstName, String lastName, int age, String email, String phone, boolean sex, int salary, int experience) {
-        super(cnp, firstName, lastName, age, email, phone, sex);
+    public Stuff(int id, String firstName, String lastName, int age, String email, String phone, String sex, int salary, int experience) {
+        super(id, firstName, lastName, age, email, phone, sex);
         this.salary = salary;
         this.experience = experience;
     }
