@@ -9,7 +9,6 @@ import utils.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.Statement;
 import java.sql.Date;
@@ -164,6 +163,66 @@ public class CabinetRepository {
         } catch(SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Some problem occurred during adding resident");
+        }
+    }
+
+    public void updateDoctor(Doctor doctor, int id) {
+        try {
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(UPDATE_DOCTOR);
+            preparedStatement.setString(1, doctor.getFirstName());
+            preparedStatement.setString(2, doctor.getLastName());
+            preparedStatement.setInt(3, doctor.getAge());
+            preparedStatement.setString(4, doctor.getEmail());
+            preparedStatement.setString(5, doctor.getPhone());
+            preparedStatement.setString(6, doctor.getSex());
+            preparedStatement.setInt(7, doctor.getSalary());
+            preparedStatement.setInt(8, doctor.getExperience());
+            preparedStatement.setString(9, doctor.getSpecialization());
+            preparedStatement.setInt(10, id);
+            preparedStatement.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Some problem occurred during updating a doctor");
+        }
+    }
+
+    public void updateAssistant(Assistant assistant, int id) {
+        try {
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(UPDATE_ASSISTANT);
+            preparedStatement.setString(1, assistant.getFirstName());
+            preparedStatement.setString(2, assistant.getLastName());
+            preparedStatement.setInt(3, assistant.getAge());
+            preparedStatement.setString(4, assistant.getEmail());
+            preparedStatement.setString(5, assistant.getPhone());
+            preparedStatement.setString(6, assistant.getSex());
+            preparedStatement.setInt(7, assistant.getSalary());
+            preparedStatement.setInt(8, assistant.getExperience());
+            preparedStatement.setString(9, assistant.getStudies());
+            preparedStatement.setInt(10, id);
+            preparedStatement.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Some problem occurred during updating a assistant");
+        }
+    }
+
+    public void updateResident(Resident resident, int id) {
+        try {
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(UPDATE_RESIDENT);
+            preparedStatement.setString(1, resident.getFirstName());
+            preparedStatement.setString(2, resident.getLastName());
+            preparedStatement.setInt(3, resident.getAge());
+            preparedStatement.setString(4, resident.getEmail());
+            preparedStatement.setString(5, resident.getPhone());
+            preparedStatement.setString(6, resident.getSex());
+            preparedStatement.setInt(7, resident.getSalary());
+            preparedStatement.setInt(8, resident.getExperience());
+            preparedStatement.setDate(9, Date.valueOf(resident.getGraduationDate()));
+            preparedStatement.setInt(10, id);
+            preparedStatement.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Some problem occurred during updating a assistant");
         }
     }
 }

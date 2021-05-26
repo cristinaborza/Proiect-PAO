@@ -11,4 +11,14 @@ public class Queries {
     public static final String INSERT_NEW_DOCTOR = "INSERT INTO doctor(id, firstName, lastName, age, email, phone, sex, salary, experience, specialization) values (null,?,?,?,?,?,?,?,?,?)";
     public static final String INSERT_NEW_ASSISTANT = "INSERT INTO assistant(id, firstName, lastName, age, email, phone, sex, salary, experience, studies) values (null,?,?,?,?,?,?,?,?,?)";
     public static final String INSERT_NEW_RESIDENT = "INSERT INTO resident(id, firstName, lastName, age, email, phone, sex, salary, experience, graduationDate) values (null,?,?,?,?,?,?,?,?,?)";
+
+    public static final String UPDATE_DOCTOR =  "UPDATE proiect_pao.doctor\n" +
+                                                "SET firstName = ?, lastName = ?, age = ?, email = ?, phone = ?, sex = ?, salary = ?, experience = ?, specialization = ?\n" +
+                                                "WHERE id = ?";
+    public static final String UPDATE_ASSISTANT =   "UPDATE proiect_pao.assistant\n" +
+                                                    "SET firstName = ?, lastName = ?, age = ?, email = ?, phone = ?, sex = ?, salary = ?, experience = ?, studies = ?\n" +
+                                                    "WHERE id = ?";
+    public static final String UPDATE_RESIDENT = "UPDATE proiect_pao.resident\n" +
+                                                 "SET firstName = ?, lastName = ?, age = ?, email = ?, phone = ?, sex = ?, salary = ?, experience = ?, graduationDate = ?\n" +
+                                                 "WHERE id = ?";
 }

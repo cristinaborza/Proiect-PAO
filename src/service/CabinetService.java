@@ -39,6 +39,18 @@ public class CabinetService {
         return cabinetRepository.addNewResident(resident);
     }
 
+    public void updateDoctor(Doctor doctor, int id) {
+        cabinetRepository.updateDoctor(doctor, id);
+    }
+
+    public void updateAssistant(Assistant assistant, int id) {
+        cabinetRepository.updateAssistant(assistant, id);
+    }
+
+    public void updateResident(Resident resident, int id) {
+        cabinetRepository.updateResident(resident, id);
+    }
+
     public void addStuff(Stuff stuffMember) {
         //add the stuff member to
         TreeSet<Stuff> stuff = cabinet.getStuff();

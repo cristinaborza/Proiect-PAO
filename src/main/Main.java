@@ -40,21 +40,21 @@ public class Main {
         while(true) {
             System.out.println("Chose one of the following options:");
             System.out.println("1. Add a stuff member (doctor, assistant or resident)");
-            System.out.println("1. Update a stuff member");
-            System.out.println("2. Fire a stuff member");
-            System.out.println("3. Print all employees in alphabetical order");
+            System.out.println("2. Update a stuff member");
+            System.out.println("3. Fire a stuff member");
+            System.out.println("4. Print all employees in alphabetical order");
             System.out.println("5. Add a patient");
-            System.out.println("4. Update a patient");
-            System.out.println("5. Add a disease for a patient");
-            System.out.println("6. Cure a disease for a patient");
-            System.out.println("7. Delete a patient");
-            System.out.println("8. Print all patients in alphabetical order");
-            System.out.println("9. Add an appointment");
-            System.out.println("10. Delete an appointment");
-            System.out.println("11. Print all appointments");
-            System.out.println("12. Add a prescription or a referral ");
-            System.out.println("13. Print all the medications a patient is taking");
-            System.out.println("14. Exit");
+            System.out.println("6. Update a patient");
+            System.out.println("7. Add a disease for a patient");
+            System.out.println("8. Cure a disease for a patient");
+            System.out.println("9. Delete a patient");
+            System.out.println("10. Print all patients in alphabetical order");
+            System.out.println("11. Add an appointment");
+            System.out.println("12. Delete an appointment");
+            System.out.println("13. Print all appointments");
+            System.out.println("14. Add a prescription or a referral ");
+            System.out.println("15. Print all the medications a patient is taking");
+            System.out.println("16. Exit");
 
             int option = Integer.parseInt(scanner.nextLine());
 
@@ -115,6 +115,58 @@ public class Main {
                         int residentId = cabinetService.addNewResident(resident);
                         resident.setId(residentId);
                         cabinetService.addStuff(resident);
+                    }
+
+                case 2:
+                    System.out.println("The id of the employee you want to update: ");
+                    int id = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("New first name: ");
+                    firstName = scanner.nextLine();
+
+                    System.out.println("New last name: ");
+                    lastName = scanner.nextLine();
+
+                    System.out.println("New age: ");
+                    age = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("New email: ");
+                    email = scanner.nextLine();
+
+                    System.out.println("New phone: ");
+                    phone = scanner.nextLine();
+
+                    System.out.println("New sex: (F/M)");
+                    sex = scanner.nextLine();
+
+                    System.out.println("New salary: ");
+                    salary = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("New experience: ");
+                    experience = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("What kind of employee do you want to update? (1 - doctor, 2 - assistant, 3 - resident)");
+                    type = Integer.parseInt(scanner.nextLine());
+
+                    if(type == 1) {
+                        System.out.println("New specialization: ");
+                        String specialization = scanner.nextLine();
+
+                        Doctor doctor = new Doctor(firstName, lastName, age, email, phone, sex, salary, experience, specialization);
+                        cabinetService.updateDoctor(doctor, id);
+                    } else if(type == 2) {
+                        System.out.println("New studies: ");
+                        String studies = scanner.nextLine();
+
+                        Assistant assistant = new Assistant(firstName, lastName, age, email, phone, sex, salary, experience, studies);
+                        cabinetService.updateAssistant(assistant, id);
+                    } else {
+                        System.out.println("Expected graduation date: ");
+                        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        LocalDate localDate = LocalDate.parse(scanner.nextLine(), format);
+
+                        Resident resident = new Resident(firstName, lastName, age, email, phone, sex, salary, experience, localDate);
+                        cabinetService.updateResident(resident, id);
                     }
             }
 
