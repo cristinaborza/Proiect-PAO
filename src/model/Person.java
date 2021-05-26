@@ -98,7 +98,8 @@ public abstract class Person implements Comparable<Person>{
 
     @Override
     public String toString() {
-        return  "First name: " + firstName + '\n' +
+        return  "Id: " + String.valueOf(id) + '\n' +
+                "First name: " + firstName + '\n' +
                 "Last name: " + lastName + '\n' +
                 "Age: " + age + '\n';
     }

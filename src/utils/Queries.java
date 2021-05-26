@@ -41,22 +41,18 @@ public class Queries {
                                                  "WHERE id = ?";
     public static final String DELETE_PATIENT_DISEASE = "DELETE FROM proiect_pao.patient_disease\n" +
                                                         "WHERE patientId = ? AND diseaseId = ?";
-    public static final String DELETE_PATIENT = "DELETE FROM proiect_pao.patient_disease\n" +
+    public static final String DELETE_PATIENT = "DELETE FROM proiect_pao.patient\n" +
                                                 "WHERE id = ?";
 
-
-    public static final String COUNT_DISEASES = "SELECT COUNT(*) nr\n" +
-                                                "FROM (SELECT id FROM proiect_pao.disease\n" +
-                                                "WHERE UPPER(diseaseName) = UPPER(?)) aux";
     public static final String GET_DISEASE_ID = "SELECT id \n" +
                                                 "FROM proiect_pao.disease\n" +
-                                                "WHERE upper(diseaseName) = UPPER('cancer')";
+                                                "WHERE upper(diseaseName) = UPPER(?)";
 
 
     public static final String GET_PATIENT = "SELECT * FROM proiect_pao.patient\n" +
                                               "WHERE id = ?";
-    public static final String GET_DOCTOR = "SELECT * FROM proiect_pao.patient\n" +
+    public static final String GET_DOCTOR = "SELECT * FROM proiect_pao.doctor\n" +
                                             "WHERE id = ?";
-    public static final String GET_ASSISTANT = "SELECT * FROM proiect_pao.patient\n" +
+    public static final String GET_ASSISTANT = "SELECT * FROM proiect_pao.assistant\n" +
                                                "WHERE id = ?";
 }

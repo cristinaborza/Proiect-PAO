@@ -1,8 +1,10 @@
 package repository;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import model.*;
 import utils.DbConnection;
 
+import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -199,11 +201,14 @@ public class CabinetRepository {
     }
 
     public void addNewPatientDisease(int patientId, int diseaseId) {
+        ResultSet resultSet;
         try {
             PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(INSERT_NEW_PATIENT_DISEASE, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, patientId);
             preparedStatement.setInt(2, diseaseId);
             preparedStatement.executeUpdate();
+            resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
         } catch(SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Some problem occurred during adding a disease to a patient");
@@ -346,11 +351,11 @@ public class CabinetRepository {
     public int countDiseases(Disease disease) {
         ResultSet resultSet;
         try {
-            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(COUNT_DISEASES);
+            PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(GET_DISEASE_ID);
             preparedStatement.setString(1, disease.getName());
-            preparedStatement.executeUpdate();
             resultSet = preparedStatement.executeQuery();
-            return resultSet.getInt("nr");
+            if(resultSet.next()) return 1;
+            return 0;
         } catch(SQLException e) {
             e.printStackTrace();
             return 0;
@@ -362,9 +367,9 @@ public class CabinetRepository {
         try {
             PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(GET_DISEASE_ID);
             preparedStatement.setString(1, disease.getName());
-            preparedStatement.executeUpdate();
             resultSet = preparedStatement.executeQuery();
-            return resultSet.getInt("id");
+            if(resultSet.next())  return resultSet.getInt(1);
+            return 0;
         } catch(SQLException e) {
             e.printStackTrace();
             return 0;
@@ -376,10 +381,14 @@ public class CabinetRepository {
         try {
             PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(GET_PATIENT);
             preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
             resultSet = preparedStatement.executeQuery();
-            Patient patient = new Patient(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4),resultSet.getString(5), resultSet.getString(6),resultSet.getString(7));
-            return patient;
+            if(resultSet.next()) {
+                Patient patient = new Patient(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+                return patient;
+            }
+
+            return new Patient();
+
         } catch(SQLException e) {
             e.printStackTrace();
             return new Patient();
@@ -391,10 +400,13 @@ public class CabinetRepository {
         try {
             PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(GET_DOCTOR);
             preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
             resultSet = preparedStatement.executeQuery();
-            Doctor doctor = new Doctor(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4),resultSet.getString(5), resultSet.getString(6),resultSet.getString(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getString(10));
-            return doctor;
+            if(resultSet.next()) {
+                Doctor doctor = new Doctor(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getString(10));
+                return doctor;
+            }
+
+            return new Doctor();
         } catch(SQLException e) {
             e.printStackTrace();
             return new Doctor();
@@ -406,10 +418,13 @@ public class CabinetRepository {
         try {
             PreparedStatement preparedStatement = dbConnection.getDBConnection().prepareStatement(GET_ASSISTANT);
             preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
             resultSet = preparedStatement.executeQuery();
-            Assistant assistant = new Assistant(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4),resultSet.getString(5), resultSet.getString(6),resultSet.getString(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getString(10));
-            return assistant;
+            if(resultSet.next()) {
+                Assistant assistant = new Assistant(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8), resultSet.getInt(9), resultSet.getString(10));
+                return assistant;
+            }
+
+            return new Assistant();
         } catch(SQLException e) {
             e.printStackTrace();
             return new Assistant();
