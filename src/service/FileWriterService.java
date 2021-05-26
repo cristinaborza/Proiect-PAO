@@ -90,7 +90,7 @@ public class FileWriterService {
         }
     }
 
-    public void writePatients(String FILE_PATH, TreeSet<Patient> patients) {
+    public void writePatients(String FILE_PATH, List<Patient> patients) {
         File file = new File(DIR_PATH + FILE_PATH);
 
         try {

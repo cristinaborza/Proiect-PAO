@@ -1,14 +1,16 @@
 package model;
 
+import java.time.LocalDate;
+
 public abstract class Appointment {
     private int id;
-    private String date;
+    private LocalDate date;
     private Patient patient;
     private Doctor doctor;
     private int price;
 
     public Appointment() { }
-    public Appointment(int id, String date, Patient patient, Doctor doctor, int price) {
+    public Appointment(int id, LocalDate date, Patient patient, Doctor doctor, int price) {
         this.id = id;
         this.date = date;
         this.patient = patient;
@@ -24,11 +26,11 @@ public abstract class Appointment {
         this.id = id;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

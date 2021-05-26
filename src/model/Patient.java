@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Patient extends Person{
     private List<String> diseases = new ArrayList<>();
@@ -10,13 +9,18 @@ public class Patient extends Person{
     public  Patient() {
         super();
     }
+
     public Patient(int id, String firstName, String lastName, int age, String email, String phone, String sex, List<String> diseases) {
         super(id, firstName, lastName, age, email, phone, sex);
         this.diseases = diseases;
     }
-    public Patient(String firstName, String lastName, int age, String email, String phone, String sex, List<String> diseases) {
+
+    public Patient(int id, String firstName, String lastName, int age, String email, String phone, String sex) {
+        super(id, firstName, lastName, age, email, phone, sex);
+    }
+
+    public Patient(String firstName, String lastName, int age, String email, String phone, String sex) {
         super(firstName, lastName, age, email, phone, sex);
-        this.diseases = diseases;
     }
 
 
@@ -43,17 +47,4 @@ public class Patient extends Person{
     public String toString() {
         return super.toString() + "Lista boli: " + listToString(diseases) + "\n";
     }
-
-    /*
-    @Override
-    public void read(Scanner scanner) {
-        super.read(scanner);
-
-        System.out.println("Introduceti numarul de boli dupa care bolile:");
-        int n = Integer.parseInt(scanner.nextLine());
-        for(int i = 1; i <= n; ++i) {
-            String disease = scanner.nextLine();
-            this.diseases.add(disease);
-        }
-    }*/
 }

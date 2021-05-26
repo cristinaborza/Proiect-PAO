@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Surgery extends Appointment{
     public  Surgery() {
         super();
     }
-    public Surgery(String date, int id, Patient patient, Doctor doctor, int price, int time, List<Assistant> assistants) {
+    public Surgery(LocalDate date, int id, Patient patient, Doctor doctor, int price, int time, List<Assistant> assistants) {
         super(id, date, patient, doctor, price);
         this.time = time;
         this.assistants = assistants;

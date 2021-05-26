@@ -1,12 +1,14 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Examination extends Appointment{
     private String verdict;
 
     public Examination() {
         super();
     }
-    public Examination(int id, String date, Patient patient, Doctor doctor, int price, String verdict) {
+    public Examination(int id, LocalDate date, Patient patient, Doctor doctor, int price, String verdict) {
         super(id, date, patient, doctor, price);
         this.verdict = verdict;
     }

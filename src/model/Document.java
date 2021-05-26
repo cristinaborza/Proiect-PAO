@@ -1,22 +1,24 @@
 package model;
 
+import java.time.LocalDate;
+
 public abstract class Document {
-    private String date;
+    private LocalDate date;
     private Doctor doctor;
     private Patient patient;
 
     public Document() { }
-    public Document(String date, Doctor doctor, Patient patient) {
+    public Document(LocalDate date, Doctor doctor, Patient patient) {
         this.date = date;
         this.doctor = doctor;
         this.patient = patient;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
